@@ -20,7 +20,8 @@
 /*Gestisce lo stile del titolo principale*/
 .main-title {
     font-size: 3rem; /* Imposta la dimensione del font a 3rem (relativo alla dimensione del font di base) */
-    color: orange; /* Imposta il colore del testo a arancione */
+    /*color: orange; /* Imposta il colore del testo a arancione */
+    color: rgba(255,155,0,255); /*codifica rgba del colore del logo*/
     font-weight: 800; /* Imposta il peso del font a 800 (molto bold) */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
@@ -30,7 +31,8 @@
 /*Gestisce lo stile di un paragrafo*/
 .lead {
     font-size: 1.2rem; /* Imposta la dimensione del font a 1.2rem */
-    color: orange; /* Imposta il colore del testo a arancione */
+    /*color: orange; /* Imposta il colore del testo a arancione */
+    color: rgba(255,155,0,255);
     max-width: 600px; /* Limita la larghezza massima del testo a 600px */
     margin-bottom: 1.5rem; /* Aggiunge uno spazio di 1.5rem sotto il paragrafo */
 }
@@ -45,9 +47,11 @@
 
 /*Stile di un bottone*/
 .btn-orange {
-    background-color: orange; /* Imposta lo sfondo del bottone a arancione */
+    /*background-color: orange; /* Imposta lo sfondo del bottone a arancione */
+    background-color: rgba(255,155,0,255);
     color: black; /* Imposta il colore del testo a nero */
-    border: 2px solid orange; /* Imposta un bordo di 2px arancione */
+    /*border: 2px solid orange; /* Imposta un bordo di 2px arancione */
+    border: 2px solid rgba(255,155,0,255);
     padding: 12px 28px; /* Aggiunge un padding (spazio interno) di 12px in verticale e 28px in orizzontale */
     font-size: 1.1rem; /* Imposta la dimensione del font a 1.1rem */
     font-weight: bold; /* Imposta il peso del font a grassetto */
