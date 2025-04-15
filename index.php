@@ -15,5 +15,5 @@ include_once 'php/init_db.php';
 </div>
 
 <?php
-    include_once 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>
