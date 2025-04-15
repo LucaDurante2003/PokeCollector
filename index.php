@@ -1,10 +1,6 @@
 <?php
-<<<<<<< HEAD
 include_once 'includes/header.php';
 include_once 'php/init_db.php';
-=======
-    include_once 'includes/header.php';
->>>>>>> 37b2542e77664374a7ef7e766549e6dfa4fbc143
 ?>
 
 <body class="d-flex flex-column min-vh-100">
