@@ -85,6 +85,21 @@ body {
     color: rgba(255,155,0,255)
 }
 
+/*Parte nuova da spiegare a Luca*/
+.input-group .form-control {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .input-group-text {
+    background-color: #fff;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
+}
+
 /*Gestisce lo stile per i messaggi di errore*/
 .error-message {
     background-color: #f8d7da;
