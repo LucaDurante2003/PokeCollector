@@ -8,19 +8,19 @@ $password = $_POST['password'] ?? '';
 $confirm_password = $_POST['confirm_password'] ?? '';
 
 if (empty($nome) || empty($email) || empty($password) || empty($confirm_password)) {
-    $_SESSION['error'] = 'Compila tutti i campi.';
+    $_SESSION['error_register'] = 'Compila tutti i campi.';
     header('Location: ../register.php');
     exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['error'] = 'Email non valida.';
+    $_SESSION['error_register'] = 'Email non valida.';
     header('Location: ../register.php');
     exit;
 }
 
 if ($password !== $confirm_password) {
-    $_SESSION['error'] = 'Le password non corrispondono.';
+    $_SESSION['error_register'] = 'Le password non corrispondono.';
     header('Location: ../register.php');
     exit;
 }
@@ -36,7 +36,7 @@ try {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION['error'] = 'Esiste già un account con questa email. Prova a fare il login o usa un\'email diversa.';
+        $_SESSION['error_register'] = 'Esiste già un account con questa email. Prova a fare il login o usa un\'email diversa.';
         $stmt->close();
         $conn->close();
         header('Location: ../register.php');
@@ -50,10 +50,10 @@ try {
     $stmt->bind_param("sss", $nome, $email, $password_hash);
 
     if ($stmt->execute()) {
-        $_SESSION['success'] = 'Registrazione completata! Ora puoi accedere.';
+        $_SESSION['success_register'] = 'Registrazione completata! Ora puoi accedere.';
         header('Location: ../login.php');
     } else {
-        $_SESSION['error'] = 'Errore durante la registrazione.';
+        $_SESSION['error_register'] = 'Errore durante la registrazione.';
         header('Location: ../register.php');
     }
 

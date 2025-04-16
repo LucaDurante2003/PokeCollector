@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'includes/header.php';
 ?>
 
@@ -6,7 +7,17 @@ include_once 'includes/header.php';
 <div class="flex-column main-content">
     <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
     <h2 class="text-orange-title mb-3">Accedi al tuo account</h2>
-    <form action="process_login.php" method="POST" class="w-100" style="max-width: 400px;">
+    <?php
+    if (isset($_SESSION['success_register'])) {
+        echo '<div class="success-message">' . $_SESSION['success_register'] . '</div>';
+        unset($_SESSION['success_register']);
+    }
+    if (isset($_SESSION['error_login'])) {
+        echo '<div class="error-message">' . $_SESSION['error_login'] . '</div>';
+        unset($_SESSION['error_login']);
+    }
+    ?>
+    <form action="php/login_logic.php" method="POST" class="w-100" style="max-width: 400px;">
         <div class="mb-3">
             <label for="email" class="form-label text-orange">Email</label>
             <input type="email" class="form-control" id="email" name="email" required placeholder="Inserisci la tua email">

@@ -10,9 +10,9 @@ include_once 'includes/header.php';
     <h2 class="text-orange-title mb-3">Crea un nuovo account</h2>
 
     <?php
-    if (isset($_SESSION['error'])) {
-        echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-        unset($_SESSION['error']);
+    if (isset($_SESSION['error_register'])) {
+        echo '<div class="error-message">' . $_SESSION['error_register'] . '</div>';
+        unset($_SESSION['error_register']);
     }
     ?>
 

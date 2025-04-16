@@ -20,12 +20,7 @@
 /*Gestisce lo stile del titolo principale*/
 .main-title {
     font-size: 3rem; /* Imposta la dimensione del font a 3rem (relativo alla dimensione del font di base) */
-<<<<<<< HEAD
     color: rgba(255,155,0,255);
-=======
-    /*color: orange; /* Imposta il colore del testo a arancione */
-    color: rgba(255,155,0,255); /*codifica rgba del colore del logo*/
->>>>>>> 37b2542e77664374a7ef7e766549e6dfa4fbc143
     font-weight: 800; /* Imposta il peso del font a 800 (molto bold) */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
@@ -35,10 +30,6 @@
 /*Gestisce lo stile di un paragrafo*/
 .lead {
     font-size: 1.2rem; /* Imposta la dimensione del font a 1.2rem */
-<<<<<<< HEAD
-=======
-    /*color: orange; /* Imposta il colore del testo a arancione */
->>>>>>> 37b2542e77664374a7ef7e766549e6dfa4fbc143
     color: rgba(255,155,0,255);
     max-width: 600px; /* Limita la larghezza massima del testo a 600px */
     margin-bottom: 1.5rem; /* Aggiunge uno spazio di 1.5rem sotto il paragrafo */
@@ -54,17 +45,9 @@
 
 /*Stile di un bottone*/
 .btn-orange {
-<<<<<<< HEAD
     background-color: rgba(255,155,0,255);
     color: black; /* Imposta il colore del testo a nero */
     border: 2px solid rgba(255,155,0,255);; /* Imposta un bordo di 2px arancione */
-=======
-    /*background-color: orange; /* Imposta lo sfondo del bottone a arancione */
-    background-color: rgba(255,155,0,255);
-    color: black; /* Imposta il colore del testo a nero */
-    /*border: 2px solid orange; /* Imposta un bordo di 2px arancione */
-    border: 2px solid rgba(255,155,0,255);
->>>>>>> 37b2542e77664374a7ef7e766549e6dfa4fbc143
     padding: 12px 28px; /* Aggiunge un padding (spazio interno) di 12px in verticale e 28px in orizzontale */
     font-size: 1.1rem; /* Imposta la dimensione del font a 1.1rem */
     font-weight: bold; /* Imposta il peso del font a grassetto */
@@ -110,4 +93,30 @@ body {
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+
+/*Gestisce lo stile per i messaggi di successo*/
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/*Gestisce l'aspetto dell'input*/
+.input-group .form-control {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/*Gestisce l'aspetto del bottone (icona) dell'input*/
+.input-group .input-group-text {
+    background-color: #fff;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
 }
