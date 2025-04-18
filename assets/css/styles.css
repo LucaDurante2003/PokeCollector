@@ -47,7 +47,7 @@
 .btn-orange {
     background-color: rgba(255,155,0,255);
     color: black; /* Imposta il colore del testo a nero */
-    border: 2px solid rgba(255,155,0,255);; /* Imposta un bordo di 2px arancione */
+    border: 2px solid rgba(255,155,0,255); /* Imposta un bordo di 2px arancione */ 
     padding: 12px 28px; /* Aggiunge un padding (spazio interno) di 12px in verticale e 28px in orizzontale */
     font-size: 1.1rem; /* Imposta la dimensione del font a 1.1rem */
     font-weight: bold; /* Imposta il peso del font a grassetto */
@@ -55,6 +55,13 @@
     text-decoration: none; /* Rimuove la sottolineatura dei link */
     box-shadow: 0 4px 8px rgba(255, 165, 0, 0.4); /* Aggiunge un'ombra arancione al bottone */
     transition: all 0.3s ease; /* Imposta una transizione su tutte le proprietà in modo che cambino in modo fluido in 0.3 secondi */
+    display: flex;
+    align-items: center; /* Centro verticale */
+    justify-content: center; /* Centro orizzontale */
+    white-space: normal; /* Permette il ritorno a capo del testo */
+    overflow: visible; /* Nessun troncamento */
+    text-overflow: unset; /* Nessun "..." */
+    text-align: center; /* Allineamento centrato anche per testo multilinea */
 }
 
 /*Effetto hover per il bottone*/
@@ -82,7 +89,15 @@ body {
 .text-orange-title {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
-    color: rgba(255,155,0,255)
+    color: rgba(255,155,0,255);
+}
+
+.text-orange-title-homepage{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 23.5px;
+    font-weight: 649;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(255,155,0,255);
 }
 
 /*Gestisce lo stile per i messaggi di errore*/
@@ -119,4 +134,124 @@ body {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+}
+
+/*Classi che gestiscono le celle con le varie espansioni*/
+.card{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/*Se vuoi modificare il colore delle celle modifica card-body e card-header ma non card*/
+.card-body{
+    background-color: #b7294b;
+    border: 1px solid #b7294b;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.card-body:hover {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.card-header{
+    background-color: #b7294b;
+    height: 90px;
+    overflow: hidden;
+    border-bottom: none;
+}
+
+/*Bottoni delle espansioni dentro le celle*/
+.expansion-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /*Centra i bottoni su ogni riga */
+    max-height: 188px; /* 3 righe da ~64px, modificabile */
+    gap: 0.5rem; /* Distanza tra i bottoni */
+    padding: 4px;
+    overflow-y: auto; /*Scroll verticale se servono più di 3 righe */
+    scrollbar-width: thin;
+    scrollbar-color: #b7294b transparent;
+}
+
+.expansion-buttons:hover{
+    scrollbar-color: rgba(255,155,0,1) transparent;
+}
+
+/*Stile condiviso dalle impostazioni e della freccetta per tornare su*/
+.round-btn{
+    background-color: rgba(255,155,0,255);
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+  
+.round-btn:hover{
+    background-color: #ff8c00;
+}
+  
+/*Mette il bottone delle impostazioni e il menù a tendina in alto a destra*/
+.settings-wrapper{
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+}
+
+/*Menù a tendina*/
+#settingsMenu{
+    display: none;
+    position: fixed;
+    top: 70px;  /*Sotto il bottone delle impostazioni*/
+    right: 16px;
+    background-color: rgba(255,155,0,255);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#settingsMenu:hover{
+    background-color: #ff8c00;
+}
+
+/*Non togliere lo spazio tra settingsmenu e il punto!*/
+#settingsMenu .dropdown-item{
+    background-color: rgba(255,155,0,255);
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 15px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2 ease;
+}
+
+#settingsMenu .dropdown-item:hover{
+    background-color: #ff8c00;
+}
+
+/*Freccetta per tornare su messa in basso a destra*/
+#scrollTopBtn{
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: none; /*Nascosto finché non si scrolla*/
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    transform: translateY(-5px); /* Lo sposta leggermente in alto */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Un piccolo effetto ombra */
 }

@@ -55,3 +55,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+/*Gestione del bottone delle impostazioni e del menù a tendina*/
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsMenu = document.getElementById("settingsMenu");
+//Quando clicchi sul bottone delle impostazioni, mostra o nascondi il menù
+settingsBtn.addEventListener("click", function() { 
+    settingsMenu.style.display = (settingsMenu.style.display === "block") ? "none" : "block";
+});
+
+/*Gestione freccetta per tornare su*/
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+window.onscroll = function () {
+    //Mostra il bottone scrollTop quando scorre giù
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.style.display = "flex";
+    } 
+    else{
+        scrollTopBtn.style.display = "none";
+    }
+};
+//Se ci clicchi sopra torna su
+scrollTopBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});

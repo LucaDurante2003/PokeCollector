@@ -35,7 +35,7 @@ try {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['nome'];
             $_SESSION['success_login'] = 'Accesso effettuato con successo!';
-            header('Location: ../dashboard.php');
+            header('Location: ../homepage.php');
             exit;
         } else {
             $_SESSION['error_login'] = 'Password errata.';
