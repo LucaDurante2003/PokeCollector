@@ -13,6 +13,19 @@
     </div>
 </div>
 
+<!--Barra di ricerca-->
+<div class="search-wrapper">
+    <div class="search-container">
+        <button id="searchToggle" class="round-btn">
+            <i class="fas fa-search"></i>
+        </button>
+        <input type="text" class="search-input" placeholder="Cerca espansione...">
+        <button id="clearSearch" class="clear-btn">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <body class="d-flex flex-column min-vh-100">
     <div class="main-content mt-4">
         <div class="row align-items-center mb-4">
@@ -143,7 +156,7 @@
                         <div class="expansion-buttons">
                             <a href="dashboard.php" class="btn btn-orange">Serie 1</a>
                             <a href="dashboard.php" class="btn btn-orange">Serie 2</a>
-                            <a href="dashboard.php" class="btn btn-orange">Serie 2</a>
+                            <a href="dashboard.php" class="btn btn-orange">Serie 3</a>
                             <a href="dashboard.php" class="btn btn-orange">Serie 4</a>
                             <a href="dashboard.php" class="btn btn-orange">Serie 5</a>
                             <a href="dashboard.php" class="btn btn-orange">Serie 6</a>
@@ -341,7 +354,6 @@
                             <a href="dashboard.php" class="btn btn-orange">Scintille Folgoranti</a>
                             <a href="dashboard.php" class="btn btn-orange">Evoluzioni Prismatiche</a>
                             <a href="dashboard.php" class="btn btn-orange">Avventure Insieme</a>
-                            <a href="dashboard.php" class="btn btn-orange">Rivali Predestinati</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,73 @@
+/*CSS PER L'ANTEPRIMA DI STAMPA*/
+
+@media print {
+    /*Rimuove la barra di ricerca e i pulsanti di ricerca*/
+    .search-wrapper, .search-container, .round-btn{
+        display: none;
+    }
+
+    /*Rimuove altri elementi non necessari*/
+    .no-print{
+        display: none;
+    }
+
+    /*Impostazioni generali per il corpo della pagina durante la stampa*/
+    body{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+    }
+
+    /*Fa in modo che il footer rimanga in basso anche quando non tutta la pagina viene occupata*/
+    footer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .logo-img{
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*Gestione dei bottoni durante la stampa*/
+    .btn{
+        background-color: #ff8c00;
+        color: black;
+        border: 1px solid #ff8c00;
+        padding: 8px 16px;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 24px;
+        text-align: center;
+    }
+
+    /*Evita che una card venga separata tra due pagine*/
+    .card{
+        page-break-inside: avoid;
+    }
+
+    /*Evita che le intestazioni e i paragrafi abbiano troppo spazio vuoto*/
+    h1, h2, h3, p{
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;  /*Rimuove i margini extra*/
+        padding: 0; /*Rimuove il padding extra*/
+    }
+
+    /*Gestione delle immagini che potrebbero essere troppo grandi per la stampa*/
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*Impostazioni del layout delle pagine di stampa*/
+    @page{
+        size: A4;
+        margin: 15mm;
+    }
+}

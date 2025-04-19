@@ -1,6 +1,6 @@
 <?php
-include_once 'includes/header.php';
-include_once 'php/init_db.php';
+    include_once 'includes/header.php';
+    include_once 'php/init_db.php';
 ?>
 
 <body class="d-flex flex-column min-vh-100">
@@ -15,5 +15,5 @@ include_once 'php/init_db.php';
 </div>
 
 <?php
-include_once 'includes/footer.php';
+    include_once 'includes/footer.php';
 ?>

@@ -1,5 +1,5 @@
 /*Gestisce il layout e lo stile del footer, utilizzando Flexbox per centrare il contenuto*/
-.footer {
+.footer{
     height: 60px; /* Imposta l'altezza del footer a 60px */
     background-color: #111; /* Imposta il colore di sfondo a un grigio molto scuro (#111) */
     color: white; /* Imposta il colore del testo a bianco */
@@ -10,7 +10,7 @@
 }
 
 /*Imposta le dimensioni e l'adattamento dell'immagine del logo*/
-.logo-img {
+.logo-img{
     width: 400px; /* Imposta la larghezza dell'immagine a 400px */
     height: auto; /* La altezza è automatica per mantenere le proporzioni */
     object-fit: contain; /* Assicura che l'immagine si adatti all'interno della dimensione senza deformarsi */
@@ -18,7 +18,7 @@
 }
 
 /*Gestisce lo stile del titolo principale*/
-.main-title {
+.main-title{
     font-size: 3rem; /* Imposta la dimensione del font a 3rem (relativo alla dimensione del font di base) */
     color: rgba(255,155,0,255);
     font-weight: 800; /* Imposta il peso del font a 800 (molto bold) */
@@ -28,7 +28,7 @@
 }
 
 /*Gestisce lo stile di un paragrafo*/
-.lead {
+.lead{
     font-size: 1.2rem; /* Imposta la dimensione del font a 1.2rem */
     color: rgba(255,155,0,255);
     max-width: 600px; /* Limita la larghezza massima del testo a 600px */
@@ -36,7 +36,7 @@
 }
 
 /*Usa Flexbox per centrare il contenuto della pagina*/
-.main-content {
+.main-content{
     flex: 1; /* Consente al contenitore di occupare lo spazio rimanente (flexbox) */
     display: flex; /* Usa Flexbox per il layout */
     justify-content: center; /* Centra il contenuto orizzontalmente */
@@ -44,7 +44,7 @@
 }
 
 /*Stile di un bottone*/
-.btn-orange {
+.btn-orange{
     background-color: rgba(255,155,0,255);
     color: black; /* Imposta il colore del testo a nero */
     border: 2px solid rgba(255,155,0,255); /* Imposta un bordo di 2px arancione */ 
@@ -55,9 +55,6 @@
     text-decoration: none; /* Rimuove la sottolineatura dei link */
     box-shadow: 0 4px 8px rgba(255, 165, 0, 0.4); /* Aggiunge un'ombra arancione al bottone */
     transition: all 0.3s ease; /* Imposta una transizione su tutte le proprietà in modo che cambino in modo fluido in 0.3 secondi */
-    display: flex;
-    align-items: center; /* Centro verticale */
-    justify-content: center; /* Centro orizzontale */
     white-space: normal; /* Permette il ritorno a capo del testo */
     overflow: visible; /* Nessun troncamento */
     text-overflow: unset; /* Nessun "..." */
@@ -65,13 +62,73 @@
 }
 
 /*Effetto hover per il bottone*/
-.btn-orange:hover {
+.btn-orange:hover{
     background-color: #ff8c00; /* Cambia lo sfondo del bottone a un arancione più scuro (#ff8c00) quando il mouse passa sopra */
     color: white; /* Cambia il colore del testo a bianco quando il mouse passa sopra */
 }
 
+/*Gestione finestre modali (stesso stile per quella di logout e eliminazione account)*/
+.modal-content{
+    background-color: #4d3868;
+    border: 2px solid #4d3868;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header, 
+.modal-footer{
+    border: none;
+    background-color: transparent;
+}
+
+.modal-title{
+    color: black;
+    font-weight: 700;
+}
+
+.modal-body{
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/*X di chiusura*/
+.btn-close {
+    filter: brightness(0); /*Rende l'icona della X scura*/
+    opacity: 1;
+    transition: filter 0.3s ease;
+    outline: none; /*Rimuove l'effetto outline*/
+}
+
+/*Bottone per eliminare l'account nella pagina delle impostazioni*/
+.delete-account-btn{
+    background-color: #b7294b;
+    color: black;
+    border: 2px solid #b7294b;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px #721c24;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    text-align: center;
+}
+
+.delete-account-btn:hover {
+    background-color: #8c2538;
+    border: 2px solid #8c2538;
+    color: white;
+}
+
 /*Imposta lo sfondo e la struttura di base della pagina utilizzando Flexbox*/
-body {
+body{
     background-image: url('../img/background.jpg'); /* Imposta l'immagine di sfondo della pagina */
     background-repeat: repeat; /* Ripete l'immagine di sfondo su tutta la pagina */
     margin: 0; /* Rimuove il margine predefinito del browser */
@@ -81,12 +138,12 @@ body {
 }
 
 /*Imposta il colore del testo a arancione*/
-.text-orange {
+.text-orange{
     color: rgba(255,155,0,255)
 }
 
 /*Gestisce lo stile di alcuni testi*/
-.text-orange-title {
+.text-orange-title{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
     color: rgba(255,155,0,255);
@@ -101,7 +158,7 @@ body {
 }
 
 /*Gestisce lo stile per i messaggi di errore*/
-.error-message {
+.error-message{
     background-color: #f8d7da;
     color: #721c24;
     padding: 15px;
@@ -111,7 +168,7 @@ body {
 }
 
 /*Gestisce lo stile per i messaggi di successo*/
-.success-message {
+.success-message{
     background-color: #d4edda;
     color: #155724;
     padding: 15px;
@@ -121,19 +178,25 @@ body {
 }
 
 /*Gestisce l'aspetto dell'input*/
-.input-group .form-control {
+.input-group .form-control{
     border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
 /*Gestisce l'aspetto del bottone (icona) dell'input*/
-.input-group .input-group-text {
+.input-group .input-group-text{
     background-color: #fff;
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+}
+
+/*Sfondo arancione della checkbox quando è selezionata*/
+.form-check-input:checked {
+    background-color: rgba(255,155,0,255);
+    border-color: rgba(255,155,0,255);
 }
 
 /*Classi che gestiscono le celle con le varie espansioni*/
@@ -145,23 +208,30 @@ body {
 
 /*Se vuoi modificare il colore delle celle modifica card-body e card-header ma non card*/
 .card-body{
-    background-color: #b7294b;
-    border: 1px solid #b7294b;
+    background-color: #412d5b;
+    border: 1px solid black;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 1rem;
     transition: box-shadow 0.3s ease;
 }
 
-.card-body:hover {
+.card-body:hover{
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
 .card-header{
-    background-color: #b7294b;
+    background-color: #412d5b;
     height: 90px;
     overflow: hidden;
     border-bottom: none;
+}
+
+/*Per aggiungere l'evidenziazione se usi la barra di ricerca e trovi un match*/
+.card.highlight {
+    outline: 3px solid #ffa500;
+    border-radius: 8px;
+    transition: outline 0.2s ease;
 }
 
 /*Bottoni delle espansioni dentro le celle*/
@@ -174,7 +244,7 @@ body {
     padding: 4px;
     overflow-y: auto; /*Scroll verticale se servono più di 3 righe */
     scrollbar-width: thin;
-    scrollbar-color: #b7294b transparent;
+    scrollbar-color: #412d5b transparent;
 }
 
 .expansion-buttons:hover{
@@ -240,6 +310,90 @@ body {
 
 #settingsMenu .dropdown-item:hover{
     background-color: #ff8c00;
+}
+
+/*Wrapper simile a quello delle impostazioni -> comprende l'iconetta del cerca e lo spazio per scrivere*/
+.search-wrapper {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999; /*In modo che sia sempre sopra gli elementi*/
+    margin: 0;
+}
+
+/*Contenitore con espansione animata*/
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255,155,0,255);
+    border-radius: 24px;
+    padding: 4px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: width 0.4s ease, background-color 0.3s ease;
+    width: 48px; /*Perchè all'inzio c'è solo l'icona*/
+    overflow: hidden;
+}
+
+/*Al passaggio del mouse, si espande*/
+.search-container:hover {
+    width: 260px;
+    background-color: #ff8c00;
+}
+
+/*Iconetta lente d'ingrandimento*/
+.search-container .round-btn {
+    background-color: transparent;
+    box-shadow: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-right: 6px;
+    transition: color 0.3s ease;
+}
+
+/*Campo input che compare con l'espansione*/
+.search-input {
+    border: none;
+    background: transparent;
+    color: black;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/*Gestione scrittina "cerca espansione" (non basta avere solo quella sotto, non levarla)*/
+.search-input::placeholder {
+    color: black;
+    font-weight: 600;
+}
+
+/*Per fare in modo che si leggano le varie scritte quando il cursore sta sulla barra di ricerca (cursore, placeholder e input dell'utente)*/
+.search-container:hover .search-input {
+    color: black;
+    font-weight: 600;
+    opacity: 100;
+}
+
+/*Pulsante X nella barra di ricerca*/
+.clear-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: black;
+    cursor: pointer;
+    margin-left: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* disabilita click se non visibile */
+}
+
+.search-container:hover .clear-btn {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /*Freccetta per tornare su messa in basso a destra*/
