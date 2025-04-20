@@ -12,7 +12,7 @@
         <h2 class="text-orange-title mb-3">Gestione Account</h2>
 
         <!--Form per cambiare la password-->
-        <form action="php/change_pw_logic.php" method="POST" class="w-100 mb-4" style="max-width: 400px;">
+        <form action="php/change_pw_logic.php" method="POST" class="w-100 px-3 px-sm-0 mb-4" style="max-width: 400px;">
             <div class="mb-3">
                 <label for="old_password" class="form-label text-orange">Vecchia Password</label>
                 <small id="old-password-error" class="text-danger d-none">La password attuale non è corretta.</small>
@@ -48,7 +48,7 @@
 
         <!--Bottone per uscire dall'account -> apre una finestra modale; messo dentro
          un form in modo che abbia la stessa lunghezza degli altri e mantenga la distanza come gli altri-->
-        <form action="" method="POST" class="w-100 mb-4" style="max-width: 400px;">
+        <form action="" method="POST" class="w-100 px-3 px-sm-0 mh-4" style="max-width: 400px;">
             <div class="mb-4 w-100">
                 <button type="button" class="btn btn-orange w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
             </div>
@@ -75,7 +75,7 @@
 
         <!--Bottone per eliminare l'account -> apre una finestra modale; messo dentro
          un form in modo che abbia la stessa lunghezza degli altri e mantenga la distanza come gli altri-->
-        <form action="" method="POST" class="w-100 mb-4" style="max-width: 400px;">
+        <form action="" method="POST" class="w-100 px-3 px-sm-0 mb-4" style="max-width: 400px;">
             <div class="mb-4 w-100">
                 <button type="button" class="btn delete-account-btn w-100" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Elimina Account</button>
             </div>

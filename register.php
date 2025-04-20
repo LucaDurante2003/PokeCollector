@@ -16,7 +16,7 @@ include_once 'includes/header.php';
     }
     ?>
 
-    <form action="php/register_logic.php" method="POST" class="w-100" style="max-width: 400px;">
+    <form action="php/register_logic.php" method="POST" class="px-3 px-sm-0 w-100" style="max-width: 400px;">
         <div class="mb-3">
             <label for="username" class="form-label text-orange">Username</label>
             <input type="text" class="form-control" id="username" name="username" required placeholder="Scegli un username">
