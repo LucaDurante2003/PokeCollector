@@ -1,15 +1,17 @@
 // ------------ GESTIONE PASSWORD ------------ 
 /* Gestisce l'occhio per nascondere e visualizzare la password inserita */
-const showPasswordElements = document.querySelectorAll(".show-password");
-showPasswordElements.forEach(function(showPassword) {
-    const passwordField = document.querySelector(`#${showPassword.dataset.target}`);
+document.addEventListener("DOMContentLoaded", function () {
+    const showPasswordElements = document.querySelectorAll(".show-password");
+    showPasswordElements.forEach(function(showPassword) {
+        const passwordField = document.querySelector(`#${showPassword.dataset.target}`);
 
-    showPassword.addEventListener("click", function() {
-        this.classList.toggle("fa-eye");
-        this.classList.toggle("fa-eye-slash", !this.classList.contains("fa-eye"));
+        showPassword.addEventListener("click", function() {
+            this.classList.toggle("fa-eye");
+            this.classList.toggle("fa-eye-slash", !this.classList.contains("fa-eye"));
 
-        const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
-        passwordField.setAttribute("type", type);
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+        });
     });
 });
 
@@ -198,29 +200,35 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ------------ GESTIONE ICONETTA INFORMAZIONI ------------ 
-const settingsBtn = document.getElementById("settingsBtn"); //bottone
-const settingsMenu = document.getElementById("settingsMenu"); //menù a tendina
-//Quando clicchi sul bottone delle impostazioni, mostra o nascondi il menù
-settingsBtn.addEventListener("click", function(){ 
-    settingsMenu.style.display = (settingsMenu.style.display === "block") ? "none" : "block";
+// ------------ GESTIONE ICONETTA IMPOSTAZIONI ------------ 
+document.addEventListener("DOMContentLoaded", function () {
+    const settingsBtn = document.getElementById("settingsBtn");
+    const settingsMenu = document.getElementById("settingsMenu");
+
+    if (settingsBtn && settingsMenu) {
+        settingsBtn.addEventListener("click", function () {
+            settingsMenu.style.display = (settingsMenu.style.display === "block") ? "none" : "block";
+        });
+    }
 });
 
-
 // ------------ GESTIONE FRECCETTA PER TORNARE SU ------------ 
-const scrollTopBtn = document.getElementById("scrollTopBtn");
-window.onscroll = function () {
-    //Mostra il bottone scrollTop quando scorre giù
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollTopBtn.style.display = "flex";
-    } 
-    else{
-        scrollTopBtn.style.display = "none";
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    if (scrollTopBtn) {
+        window.onscroll = function () {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = "flex";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        scrollTopBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
-};
-//Se ci clicchi sopra torna su
-scrollTopBtn.addEventListener("click", function (){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 
@@ -316,4 +324,253 @@ document.addEventListener("DOMContentLoaded", function (){ //aspetta che il DOM 
             card.classList.remove("highlight");
         });
     }
+});
+
+
+// ------------ GESTIONE CURSORE IN DASHBOARD ------------ 
+document.addEventListener("DOMContentLoaded", function(){
+    const labels = document.querySelectorAll(".pokedex-label");
+    const cursor = document.getElementById("pokedexCursor");
+    let currentIndex = 0; //Posizione iniziale del cursore
+  
+    /*Funzione che aggiorna il box dei dettagli a destra con i dati della carta selezionata -> i dati
+    provengono dagli attributi HTML (data-*) della label selezionata (vedi anche il tag div di esempio
+    che avevo messo in dashboard.php*/
+    function aggiornaDettagliCarta(nome, immagine, rarita, tipo, numero){
+        document.getElementById("cardName").textContent = nome;
+        document.getElementById("cardImage").src = immagine;
+        document.getElementById("cardDetails").innerHTML = `
+        <strong>Rarità:</strong> ${rarita}<br>
+        <strong>Tipo:</strong> ${tipo}<br>
+        <strong>N. carta:</strong> ${numero}
+      `;
+    }
+  
+    //Funzione per spostare il cursore sulla label scelta
+    function spostaCursore(label){
+        const offset = label.offsetTop + label.offsetHeight / 2 - 10;
+        cursor.style.top = `${offset}px`;
+    
+        //Gestisce l'animazione carina quando il cursore punta alla label
+        document.querySelectorAll('.label.pokedex-label').forEach(label => { //Rimuove la classe "hovered" da tutte le label
+            label.classList.remove('hovered');
+        });
+        label.classList.add('hovered'); //Aggiunge la classe "hovered" alla label su cui il cursore è puntato
+    
+        // Aggiorna i dettagli della carta
+        const nome = label.getAttribute("data-nome");
+        const img = label.getAttribute("data-img");
+        const rarita = label.getAttribute("data-rarita");
+        const tipo = label.getAttribute("data-tipo");
+        const numero = label.getAttribute("data-numero");
+    
+        aggiornaDettagliCarta(nome, img, rarita, tipo, numero);
+        //Fa in modo che se il cursore va molto giù scrolla il container
+        if (currentIndex === 0){
+            //Se faccio puntare il cursore al primo blocco, torno alla posizione iniziale....
+            document.querySelector('.pokedex-sidebar').scrollTo({ top: 0, behavior: 'smooth' });
+        } 
+        else{
+            //Altrimenti sto all'altezza del blocco che punto
+            label.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }        
+    }
+  
+    //Seleziona automaticamente la prima all'avvio della pagina
+    if (labels.length > 0){
+      const prima = labels[0];
+      spostaCursore(prima);
+    }
+  
+   //Permette la navigazione tra le carte usando le frecce su e giù della tastiera
+   document.addEventListener("keydown", (e) => {
+    const isInput = e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA";
+    if (isInput) return;
+
+    // Impedisce che la pagina scrolli quando uso le freccette
+    if (["ArrowDown", "ArrowUp"].includes(e.key)) {
+        e.preventDefault();
+    }
+
+    if (e.key === "ArrowDown"){ // Muove il cursore verso il basso
+        if (currentIndex < labels.length - 1){
+            currentIndex++;
+            spostaCursore(labels[currentIndex]);
+        }
+    } 
+    else if (e.key === "ArrowUp"){ // Muove il cursore verso l'alto (precedente)
+        if (currentIndex > 0){
+            currentIndex--;
+            spostaCursore(labels[currentIndex]);
+        }
+    }
+    });
+  
+    //Puoi scegliere il pokemon anche cliccando su una label.
+    labels.forEach((label, index) => {
+      label.addEventListener("click", () => {
+        currentIndex = index;
+        spostaCursore(label);
+      });
+    });
+
+    //Fa in modo che il cursore segua il puntatore del mouse
+    labels.forEach((label, index) => {
+        label.addEventListener("mouseenter", () => {
+            currentIndex = index;
+            spostaCursore(label);
+        });
+    });
+
+    // ------------ GESTIONE RICERCA NELLA DASHBOARD (POKÉMON) ------------
+    const searchToggle = document.getElementById("searchToggle"); // Icona lente
+    const searchInput = document.querySelector(".search-input");  // Campo input
+    const clearButton = document.getElementById("clearSearch");   // Bottone X
+
+    let searchActive = false;
+    let firstMatch = null;
+
+    //Mostra o nasconde la barra di ricerca
+    searchToggle.addEventListener("click", function (){
+        if (searchInput.classList.contains("active") && searchInput.value.trim() === ""){
+            searchInput.classList.remove("active");
+            searchActive = false;
+            clearHighlights();
+            window.scrollTo(0, 0);
+        } 
+        else{
+            searchInput.classList.add("active");
+            searchInput.focus();
+            searchActive = true;
+        }
+    });
+
+    //Quando l'utente scrive nella barra
+    searchInput.addEventListener("input", function () {
+        const searchValue = searchInput.value.toLowerCase();
+        firstMatch = null;
+
+        //Mostra o nasconde la X
+        clearButton.style.display = searchValue !== "" ? "inline" : "none";
+
+        //Cerca nei nomi dei Pokémon
+        labels.forEach(label => {
+            const nomePokemon = label.textContent.toLowerCase();
+            if (nomePokemon.includes(searchValue)){
+                label.classList.add("highlight");
+                if (!firstMatch) firstMatch = label;
+            } 
+            else{
+                label.classList.remove("highlight");
+            }
+        });
+
+        if (searchValue === ""){
+            clearHighlights();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } 
+        else if (firstMatch){
+            firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+            spostaCursore(firstMatch); // Usa la funzione esistente
+        }
+    });
+
+    //Quando clicchi sulla X per cancellare
+    clearButton.addEventListener("click", function (){
+        searchInput.value = "";
+        searchInput.dispatchEvent(new Event("input"));
+        clearButton.style.display = "none";
+        searchInput.focus();
+    });
+
+    //Premi Invio per andare al primo match
+    searchInput.addEventListener("keydown", function (event){
+        if (event.key === "Enter" && firstMatch) {
+            firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+            spostaCursore(firstMatch);
+        }
+    });
+
+    //Mantiene la barra espansa se c'è testo durante lo scroll
+    window.addEventListener("scroll", function () {
+        if (searchInput.value.trim() !== "") {
+            searchInput.classList.add("active");
+        }
+    });
+
+    //Rimuove tutti gli highlight
+    function clearHighlights(){
+        labels.forEach(label => {
+            label.classList.remove("highlight");
+        });
+    }
+});
+
+
+// ------------ GESTIONE MODALE AGGIUNTA COPIE ------------
+window.addEventListener('DOMContentLoaded', function () {
+    const addCardButton = document.getElementById('addButton');
+    const addCardModal = document.getElementById('addCardModal');
+
+    if (addCardButton && addCardModal) {
+        addCardButton.addEventListener('click', function () {
+            const myModal = new bootstrap.Modal(addCardModal);
+            myModal.show();
+        });
+    }
+});
+
+// ------------ GESTIONE MODALE RIMOZIONE COPIE ------------
+window.addEventListener('DOMContentLoaded', function () {
+    const removeCardButton = document.getElementById('removeButton');
+    const removeCardModal = document.getElementById('removeCardModal');
+
+    if (removeCardButton && removeCardModal) {
+        removeCardButton.addEventListener('click', function () {
+            const myModal = new bootstrap.Modal(removeCardModal);
+            myModal.show();
+        });
+    }
+});
+
+
+// ------------ GESTIONE BOTTONI + E - NELLE MODALI DI AGGIUNTA/RIMOZIONE COPIE ------------
+document.addEventListener("DOMContentLoaded", function () {
+
+    function setupCounter(modalId, displayId, inputId) {
+        const modal = document.getElementById(modalId);
+        const decrementBtn = modal.querySelector('.fa-minus').closest('button');
+        const incrementBtn = modal.querySelector('.fa-plus').closest('button');
+        const display = modal.querySelector(`#${displayId}`);
+        const input = modal.querySelector(`#${inputId}`);
+
+        let count = 1;
+
+        //Se clicchi il bottone - si riduce il numero di copie (ma non va sotto 1)
+        decrementBtn.addEventListener('click', () => {
+            if (count > 1) {
+                count--;
+                display.textContent = count;
+                input.value = count;
+            }
+        });
+
+        //Se clicchi il bottone + aumenta il numero di copie
+        incrementBtn.addEventListener('click', () => {
+            count++;
+            display.textContent = count;
+            input.value = count;
+        });
+
+        //Reset del contatore quando si apre la modale
+        modal.addEventListener('show.bs.modal', () => {
+            count = 1;
+            display.textContent = count;
+            input.value = count;
+        });
+    }
+
+    //Inizializzazione dei contatori per entrambe le modali
+    setupCounter('addCardModal', 'removeCardDisplay', 'removeCardInput');
+    setupCounter('removeCardModal', 'removeCardDisplay', 'removeCardInput');
 });

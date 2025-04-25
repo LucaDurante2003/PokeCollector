@@ -159,7 +159,8 @@ body{
     color: rgba(255,155,0,255);
 }
 
-.text-orange-title-homepage{
+.text-orange-title-homepage,
+.text-orange-title-dashboard{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 23.5px;
     font-weight: 649;
@@ -270,6 +271,7 @@ body{
     width: 48px;
     height: 48px;
     font-size: 1.5rem;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -306,7 +308,6 @@ body{
     background-color: #ff8c00;
 }
 
-/*Non togliere lo spazio tra settingsmenu e il punto!*/
 #settingsMenu .dropdown-item{
     background-color: rgba(255,155,0,255);
     color: black;
@@ -323,7 +324,7 @@ body{
 }
 
 /*Wrapper simile a quello delle impostazioni -> comprende l'iconetta del cerca e lo spazio per scrivere*/
-.search-wrapper {
+.search-wrapper{
     position: fixed;
     top: 16px;
     left: 16px;
@@ -332,7 +333,7 @@ body{
 }
 
 /*Contenitore con espansione animata*/
-.search-container {
+.search-container{
     position: relative;
     display: flex;
     align-items: center;
@@ -346,13 +347,13 @@ body{
 }
 
 /*Al passaggio del mouse, si espande*/
-.search-container:hover {
+.search-container:hover{
     width: 260px;
     background-color: #ff8c00;
 }
 
 /*Iconetta lente d'ingrandimento*/
-.search-container .round-btn {
+.search-container .round-btn{
     background-color: transparent;
     box-shadow: none;
     width: 40px;
@@ -363,7 +364,7 @@ body{
 }
 
 /*Campo input che compare con l'espansione*/
-.search-input {
+.search-input{
     border: none;
     background: transparent;
     color: black;
@@ -376,20 +377,20 @@ body{
 }
 
 /*Gestione scrittina "cerca espansione" (non basta avere solo quella sotto, non levarla)*/
-.search-input::placeholder {
+.search-input::placeholder{
     color: black;
     font-weight: 600;
 }
 
 /*Per fare in modo che si leggano le varie scritte quando il cursore sta sulla barra di ricerca (cursore, placeholder e input dell'utente)*/
-.search-container:hover .search-input {
+.search-container:hover .search-input{
     color: black;
     font-weight: 600;
     opacity: 100;
 }
 
 /*Pulsante X nella barra di ricerca*/
-.clear-btn {
+.clear-btn{
     background: none;
     border: none;
     font-size: 1.2rem;
@@ -401,7 +402,7 @@ body{
     pointer-events: none; /* disabilita click se non visibile */
 }
 
-.search-container:hover .clear-btn {
+.search-container:hover .clear-btn{
     opacity: 1;
     pointer-events: auto;
 }
@@ -415,7 +416,166 @@ body{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#scrollTopBtn:hover {
+#scrollTopBtn:hover{
     transform: translateY(-5px); /* Lo sposta leggermente in alto */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Un piccolo effetto ombra */
+}
+
+.pokedex-sidebar-header,
+.card-body-header{
+    height: 45px;
+    overflow: hidden;
+    border-bottom: none;
+}
+
+.pokedex-container{
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Colonna con i nomi delle carte*/
+.pokedex-sidebar{
+    background-color: #412d5b;
+    border-radius: 12px;
+    padding: 1rem;
+    height: 540px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    scrollbar-width: none; /*Nasconde la scrollbar su firefox*/
+}
+
+/*Nasconde la scrollbar sugli altri browser tipo chrome o safari*/
+.pokedex-sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+.pokedex-cursor{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 12px solid #b7294b;
+    left: 0;
+    margin-left: 10px;
+    transition: top 0.3s ease;
+    z-index: 2;
+}
+  
+@media (max-width: 576px){
+    .pokedex-cursor{
+        margin-left: 0.5px;
+    }
+}
+
+.label.pokedex-label{
+    background-color: rgba(255, 155, 0, 1);
+    color: black;
+    padding: 8px 12px;
+    margin: 6px auto;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    max-width: 85%;
+    position: relative;
+}
+
+.label.pokedex-label:hover{
+    background-color: #ff8c00;
+    transform: scale(1.03);
+}
+
+/*Evidenziazione delle label dei Pokémon quando trova un match*/
+.pokedex-label.highlight {
+    outline: 4px solid #b7294b;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #721c24;
+    transition: outline 0.2s ease, box-shadow 0.3s ease;
+}
+
+.label.pokedex-label.hovered {
+    background-color: #ff8c00;
+    transform: scale(1.03);
+}
+  
+.card-container{
+    display: flex;
+    align-items: stretch; /*Forza i figli ad avere la stessa altezza*/
+    gap: 2rem;
+    margin-top: 2rem;
+}
+  
+.labels-wrapper,
+.card-preview{
+    flex: 1;
+    min-height: 400px; /*Atezza minima per inizializzazione coerente*/
+}
+
+/*Dettagli carta selezionata*/
+#cardDisplay{
+    background-color: #412d5b;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    min-height: 420px;
+}
+  
+#cardImage{
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+  
+/* Dettagli testuali*/
+#cardDetails{
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/*Se l'utente non ha la carta, appare grigia*/
+#cardImage.grayscale{
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.card-image-wrapper{
+    position: relative;
+    display: inline-block;
+    width: 240px;
+    max-height: 340px;
+}
+
+.card-img{
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+/*Pallino numero copie*/
+.card-count{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    pointer-events: none;
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+/*Bottone +*/
+.card-add-btn{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 2;
+}
+
+/*Bottone -*/
+.card-remove-btn{
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    z-index: 2;
 }

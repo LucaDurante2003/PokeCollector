@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS pokecollector CHARACTER SET utf8mb4 COLLATE utf8mb
 
 USE pokecollector;
 
-CREATE TABLE IF NOT EXISTS utenti (
+CREATE TABLE IF NOT EXISTS utenti(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -10,14 +10,27 @@ CREATE TABLE IF NOT EXISTS utenti (
     data_registrazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS collezioni (
+CREATE TABLE IF NOT EXISTS espansioni(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL UNIQUE,
+    slug VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS carte(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    immagine_url TEXT,
+    espansione_id INT,
+    numero_carta VARCHAR(20),
+    FOREIGN KEY (espansione_id) REFERENCES espansioni(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS collezioni(
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_utente INT NOT NULL,
-    id_carta VARCHAR(50) NOT NULL,
-    nome_carta VARCHAR(255) NOT NULL,
-    immagine_url TEXT,
-    set_nome VARCHAR(100),
+    id_carta INT NOT NULL,
     quantita INT DEFAULT 1,
     data_aggiunta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_utente) REFERENCES utenti(id) ON DELETE CASCADE
+    FOREIGN KEY (id_utente) REFERENCES utenti(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_carta) REFERENCES carte(id) ON DELETE CASCADE
 );
