@@ -106,7 +106,7 @@
                         </div>
                         <div class="expansion-buttons">
                             <a href="dashboard.php?slug=ex-rubino-e-zaffiro" class="btn btn-orange">EX Rubino e Zaffiro</a>
-                            <a href="dashboard.php?slug=ex-tempesta-di-sabbia" class="btn btn-orange">EX Tempesta di sabbia</a>
+                            <a href="dashboard.php?slug=ex-tempesta-di-sabbia" class="btn btn-orange">EX Tempesta di Sabbia</a>
                             <a href="dashboard.php?slug=ex-drago" class="btn btn-orange">EX Drago</a>
                             <a href="dashboard.php?slug=ex-team-magma-vs-team-idro" class="btn btn-orange">EX Team Magma vs Team Idro</a>
                             <a href="dashboard.php?slug=ex-leggende-nascoste" class="btn btn-orange">EX Leggende Nascoste</a>
@@ -136,10 +136,10 @@
                             <a href="dashboard.php?slug=diamante-e-perla" class="btn btn-orange">Diamante e Perla</a>
                             <a href="dashboard.php?slug=tesori-misteriosi" class="btn btn-orange">Tesori Misteriosi</a>
                             <a href="dashboard.php?slug=prodigi-segreti" class="btn btn-orange">Prodigi Segreti</a>
-                            <a href="dashboard.php?slug=incontri-leggendari" class="btn btn-orange">Incontri leggendari</a>
+                            <a href="dashboard.php?slug=incontri-leggendari" class="btn btn-orange">Incontri Leggendari</a>
                             <a href="dashboard.php?slug=alba-suprema" class="btn btn-orange">Alba Suprema</a>
                             <a href="dashboard.php?slug=il-risveglio-dei-miti" class="btn btn-orange">Il Risveglio dei Miti</a>
-                            <a href="dashboard.php?slug=fronte-di-tempesta" class="btn btn-orange">Fronte di tempesta</a>
+                            <a href="dashboard.php?slug=fronte-di-tempesta" class="btn btn-orange">Fronte di Tempesta</a>
                         </div>
                     </div>
                 </div>
@@ -195,9 +195,9 @@
                         </div>
                         <div class="expansion-buttons">
                             <a href="dashboard.php?slug=heartgold-soulsilver" class="btn btn-orange">HeartGold & SoulSilver</a>
-                            <a href="dashboard.php?slug=forze-scatenate" class="btn btn-orange">Forze scatenate</a>
+                            <a href="dashboard.php?slug=forze-scatenate" class="btn btn-orange">Forze Scatenate</a>
                             <a href="dashboard.php?slug=senza-paura" class="btn btn-orange">Senza Paura</a>
-                            <a href="dashboard.php?slug=battaglie-trionfali" class="btn btn-orange">Battaglie trionfali</a>
+                            <a href="dashboard.php?slug=battaglie-trionfali" class="btn btn-orange">Battaglie Trionfali</a>
                         </div>
                     </div>
                 </div>
@@ -235,8 +235,8 @@
                             <a href="dashboard.php?slug=stirpe-dei-draghi" class="btn btn-orange">Stirpe dei Draghi</a>
                             <a href="dashboard.php?slug=tesoro-dei-draghi" class="btn btn-orange">Tesoro dei Draghi</a>
                             <a href="dashboard.php?slug=confini-varcati" class="btn btn-orange">Confini Varcati</a>
-                            <a href="dashboard.php?uragano-plasma" class="btn btn-orange">Uragano Plasma</a>
-                            <a href="dashboard.php?slug=glaciazione plasma" class="btn btn-orange">Glaciazione Plasma</a>
+                            <a href="dashboard.php?slug=uragano-plasma" class="btn btn-orange">Uragano Plasma</a>
+                            <a href="dashboard.php?slug=glaciazione-plasma" class="btn btn-orange">Glaciazione Plasma</a>
                             <a href="dashboard.php?slug=esplosione-plasma" class="btn btn-orange">Esplosione Plasma</a>
                         </div>
                     </div>
@@ -259,7 +259,7 @@
                             <a href="dashboard.php?slug=forze-spettrali" class="btn btn-orange">Forze Spettrali</a>
                             <a href="dashboard.php?slug=scontro-primordiale" class="btn btn-orange">Scontro Primordiale</a>
                             <a href="dashboard.php?slug=furie-volanti" class="btn btn-orange">Furie Volanti</a>
-                            <a href="dashboard.php?antiche-origini" class="btn btn-orange">Antiche origini</a>
+                            <a href="dashboard.php?slug=antiche-origini" class="btn btn-orange">Antiche Origini</a>
                             <a href="dashboard.php?slug=turboblitz" class="btn btn-orange">Turboblitz</a>
                             <a href="dashboard.php?slug=turbocrash" class="btn btn-orange">Turbocrash</a>
                             <a href="dashboard.php?slug=generazioni" class="btn btn-orange">Generazioni</a>
