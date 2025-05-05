@@ -348,7 +348,7 @@ body{
 
 /*Al passaggio del mouse, si espande*/
 .search-container:hover{
-    width: 260px;
+    width: 442px;
     background-color: #ff8c00;
 }
 
@@ -443,6 +443,7 @@ body{
     overflow-y: auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     scrollbar-width: none; /*Nasconde la scrollbar su firefox*/
+    overflow-y: auto;
 }
 
 /*Nasconde la scrollbar sugli altri browser tipo chrome o safari*/
@@ -452,15 +453,14 @@ body{
 
 .pokedex-cursor{
     position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 12px solid #b7294b;
-    left: 0;
-    margin-left: 10px;
-    transition: top 0.3s ease;
-    z-index: 2;
+    left: -5px;
+
+    width: 40px;
+    height: 40px;
+    background-image: url('../img/cursor.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: top 0.2s ease;
 }
   
 @media (max-width: 576px){
@@ -508,7 +508,9 @@ body{
     margin-top: 2rem;
 }
   
-.labels-wrapper,
+.labels-wrapper {
+    position: relative;
+}
 .card-preview{
     flex: 1;
     min-height: 400px; /*Atezza minima per inizializzazione coerente*/
@@ -520,7 +522,7 @@ body{
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    min-height: 420px;
+    height: 540px;
 }
   
 #cardImage{
@@ -554,28 +556,48 @@ body{
     display: block;
 }
 
-/*Pallino numero copie*/
-.card-count{
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    pointer-events: none;
-    font-size: 1.2rem;
-    z-index: 2;
+.card-count,
+.card-add-btn,
+.card-remove-btn {
+  position: static;
+  margin: 0.3rem 0;
 }
 
-/*Bottone +*/
-.card-add-btn{
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    z-index: 2;
+.card-img.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+.pokedex-label.active {
+    background-color: orange;
+    color: white;
+}
+.search-input {
+    transition: width 0.3s;
 }
 
-/*Bottone -*/
-.card-remove-btn{
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    z-index: 2;
+.label-owned{
+    background-color: green !important;
+    border-color: green !important;
+    color: black !important; /* testo leggibile */
 }
+
+.label-owned.active{
+    background-color: green !important;
+    border-color: green !important;
+    color: white !important;
+}
+
+/* Sfondo viola per la barra vuota */
+.custom-progress-bg {
+    background-color: #412d5b !important; /* viola intenso */
+    border-radius: 10px;
+}
+  
+/* Parte riempita arancione */
+.bg-orange {
+    background-color: rgba(255,155,0,255) !important;
+    border-radius: 10px;
+    color: black !important; /* testo nero */
+    font-weight: bold;
+}
+  

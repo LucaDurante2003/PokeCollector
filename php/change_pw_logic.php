@@ -37,7 +37,7 @@
     try{
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($conn->connect_error) {
-            throw new Exception("Errore di connessione al database");
+            throw new Exception("Connessione fallita");
         }
 
         // Verifica password attuale
@@ -71,6 +71,9 @@
         exit;
 
     }catch (Exception $e){
+        header('Location: ../error.php');
+        exit;
+    } catch (mysqli_sql_exception $e) {
         header('Location: ../error.php');
         exit;
     }

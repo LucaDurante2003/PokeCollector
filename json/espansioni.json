@@ -1,0 +1,482 @@
+{
+    "set-base": {
+      "name": "Set Base",
+      "id": "base1"
+    },
+    "jungle": {
+      "name": "Jungle",
+      "id": "base2"
+    },
+    "fossil": {
+      "name": "Fossil",
+      "id": "base3"
+    },
+    "team-rocket": {
+      "name": "Team Rocket",
+      "id": "base4"
+    },
+    "neo-genesis": {
+      "name": "Neo Genesis",
+      "id": "neo1"
+    },
+    "neo-discovery": {
+      "name": "Neo Discovery",
+      "id": "neo2"
+    },
+    "neo-revelation": {
+      "name": "Neo Revelation",
+      "id": "neo3"
+    },
+    "neo-destiny": {
+      "name": "Neo Destiny",
+      "id": "neo4"
+    },
+    "expedition-set-base": {
+      "name": "Expedition Set Base",
+      "id": "base5"
+    },
+    "aquapolis": {
+      "name": "Aquapolis",
+      "id": "base6"
+    },
+    "skyridge": {
+      "name": "Skyridge",
+      "id": "base7"
+    },
+    "ex-rubino-e-zaffiro": {
+      "name": "EX Rubino e Zaffiro",
+      "id": "ex1"
+    },
+    "ex-tempesta-di-sabbia": {
+      "name": "EX Tempesta di Sabbia",
+      "id": "ex2"
+    },
+    "ex-drago": {
+      "name": "EX Drago",
+      "id": "ex3"
+    },
+    "ex-team-magma-vs-team-idro": {
+      "name": "EX Team Magma vs Team Idro",
+      "id": "ex4"
+    },
+    "ex-leggende-nascoste": {
+      "name": "EX Leggende Nascoste",
+      "id": "ex5"
+    },
+    "ex-rossofuoco-e-verdefoglia": {
+      "name": "EX RossoFuoco e VerdeFoglia",
+      "id": "ex6"
+    },
+    "ex-deoxys": {
+      "name": "EX Deoxys",
+      "id": "ex8"
+    },
+    "ex-smeraldo": {
+      "name": "EX Smeraldo",
+      "id": "ex9"
+    },
+    "ex-forze-segrete": {
+      "name": "EX Forze Segrete",
+      "id": "ex10"
+    },
+    "ex-specie-delta": {
+      "name": "EX Specie Delta",
+      "id": "ex11"
+    },
+    "ex-la-leggenda-di-mew": {
+      "name": "EX La Leggenda di Mew",
+      "id": "ex12"
+    },
+    "ex-fantasmi-di-holon": {
+      "name": "EX Fantasmi di Holon",
+      "id": "ex13"
+    },
+    "ex-guardiani-dei-cristalli": {
+      "name": "EX Guardiani dei Cristalli",
+      "id": "ex14"
+    },
+    "ex-isola-dei-draghi": {
+      "name": "EX L'isola dei Draghi",
+      "id": "ex15"
+    },
+    "diamante-e-perla": {
+      "name": "Diamante e Perla",
+      "id": "dp1"
+    },
+    "tesori-misteriosi": {
+      "name": "Tesori Misteriosi",
+      "id": "dp2"
+    },
+    "prodigi-segreti": {
+      "name": "Prodigi Segreti",
+      "id": "dp3"
+    },
+    "incontri-leggendari": {
+      "name": "Incontri Leggendari",
+      "id": "dp4"
+    },
+    "alba-suprema": {
+      "name": "Alba Suprema",
+      "id": "dp5"
+    },
+    "il-risveglio-dei-miti": {
+      "name": "Il Risveglio dei Miti",
+      "id": "dp6"
+    },
+    "fronte-di-tempesta": {
+      "name": "Fronte di Tempesta",
+      "id": "dp7"
+    },
+    "serie-1": {
+        "name": "Serie 1",
+        "id": "pop1"
+    },
+    "serie-2": {
+        "name": "Serie 2",
+        "id": "pop2"
+    },
+    "serie-3": {
+        "name": "Serie 3",
+        "id": "pop3"
+    },
+    "serie-4": {
+        "name": "Serie 4",
+        "id": "pop4"
+    },
+    "serie-5": {
+        "name": "Serie 5",
+        "id": "pop5"
+    },
+    "serie-6": {
+        "name": "Serie 6",
+        "id": "pop6"
+    },
+    "serie-7": {
+        "name": "Serie 7",
+        "id": "pop7"
+    },
+    "serie-8": {
+        "name": "Serie 8",
+        "id": "pop8"
+    },
+    "serie-9": {
+        "name": "Serie 9",
+        "id": "pop9"
+    },
+    "platino": {
+        "name": "Platino",
+        "id": "pl1"
+    },
+    "lascesa-dei-rivali": {
+        "name": "L'ascesa dei Rivali",
+        "id": "pl2"
+    },
+    "arceus": {
+        "name": "Arceus",
+        "id": "pl4"
+    },
+    "heartgold-soulsilver": {
+        "name": "HertGold & SoulSilver",
+        "id": "hggs1"
+    },
+    "forze-scatenate": {
+        "name": "Forze Scatenate",
+        "id": "hggs2"
+    },
+    "senza-paura": {
+        "name": "Senza Paura",
+        "id": "hggs3"
+    },
+    "battaglie-trionfali": {
+        "name": "Battaglie Trionfali",
+        "id": "hgss4"
+    },
+    "richiamo-delle-leggende": {
+        "name": "Richiamo delle Leggende",
+        "id": "col1"
+    },
+    "nero-e-bianco": {
+        "name": "Nero e Bianco",
+        "id": "bw1"
+    },
+    "nuove-forze": {
+        "name": "Nuove Forze",
+        "id": "bw2"
+    },
+    "vittorie-regali": {
+        "name": "Vittorie Regali",
+        "id": "bw3"
+    },
+    "destini-futuri": {
+        "name": "Destini Futuri",
+        "id": "bw4"
+    },
+    "esploratori-delle-tenebre": {
+        "name": "Esploratori delle Tenebre",
+        "id": "bw5"
+    },
+    "stirpe-dei-draghi": {
+        "name": "Stirpe dei Draghi",
+        "id": "bw6"
+    },
+    "tesoro-dei-draghi": {
+        "name": "Tesoro dei Draghi",
+        "id": "dv1"
+    },
+    "confini-varcati": {
+        "name": "Confini Varcati",
+        "id": "bw7"
+    },
+    "uragano-plasma": {
+        "name": "Uragano Plasma",
+        "id": "bw8"
+    },
+    "glaciazione-plasma": {
+        "name": "Glaciazione Plasma",
+        "id": "bw9"
+    },
+    "esplosione-plasma": {
+        "name": "Esplosione Plasma",
+        "id": "bw10"
+    },
+    "xy": {
+        "name": "XY",
+        "id": "xy1"
+    },
+    "xy-benvenuti-a-kalos": {
+        "name": "XY - Benvenuti a Kalos",
+        "id": "xy0"
+    },
+    "fuoco-infernale": {
+        "name": "Fuoco Infernale",
+        "id": "xy2"
+    },
+    "colpi-furiosi": {
+        "name": "Colpi Furiosi",
+        "id": "xy3"
+    },
+    "forze-spettrali": {
+        "name": "Forze Spettrali",
+        "id": "xy4"
+    },
+    "scontro-primordiale": {
+        "name": "Scontro Primordiale",
+        "id": "xy5"
+    },
+    "furie-volanti": {
+        "name": "Furie Volanti",
+        "id": "xy6"
+    },
+    "antiche-origini": {
+        "name": "Antiche Origini",
+        "id": "xy7"
+    },
+    "turboblitz": {
+        "name": "Turboblitz",
+        "id": "xy8"
+    },
+    "turbocrash": {
+        "name": "Turbocrash",
+        "id": "xy9"
+    },
+    "generazioni": {
+        "name": "Generazioni",
+        "id": "g1"
+    },
+    "destini-incrociati": {
+        "name": "Destini Incrociati",
+        "id": "xy10"
+    },
+    "vapori-accesi": {
+        "name": "Vapori Accesi",
+        "id": "xy11"
+    },
+    "evoluzioni": {
+        "name": "Evoluzioni",
+        "id": "xy12"
+    },
+    "sole-e-luna": {
+        "name": "Sole e Luna",
+        "id": "sm1"
+    },
+    "guardiani-nascenti": {
+        "name": "Guardiani Nascenti",
+        "id": "sm2"
+    },
+    "ombre-infuocate": {
+        "name": "Ombre Infuocate",
+        "id": "sm3"
+    },
+    "leggende-iridescenti": {
+        "name": "Leggende Iridescenti",
+        "id": "sm35"
+    },
+    "invasione-scarlatta": {
+        "name": "Invasione Scarlatta",
+        "id": "sm4"
+    },
+    "ultraprisma": {
+        "name": "Ultraprisma",
+        "id": "sm5"
+    },
+    "apocalisse-di-luce": {
+        "name": "Apocalisse di Luce",
+        "id": "sm6"
+    },
+    "tempesta-astrale": {
+        "name": "Tempesta Astrale",
+        "id": "sm7"
+    },
+    "trionfo-dei-draghi": {
+        "name": "Trionfo dei Draghi",
+        "id": "sm75"
+    },
+    "tuoni-perduti": {
+        "name": "Tuoni Perduti",
+        "id": "sm8"
+    },
+    "gioco-di-squadra": {
+        "name": "Gioco di Squadra",
+        "id": "sm9"
+    },
+    "detective-pikachu": {
+        "name": "Detective Pikachu",
+        "id": "det1"
+    },
+    "legami-inossidabili": {
+        "name": "Legami Inossidabili",
+        "id": "sm10"
+    },
+    "sintonia-mentale": {
+        "name": "Sintonia Mentale",
+        "id": "sm11"
+    },
+    "destino-sfuggente": {
+        "name": "Destino Sfuggente",
+        "id": "sm115"
+    },
+    "eclissi-cosmica": {
+        "name": "Eclissi Cosmica",
+        "id": "sm12"
+    },
+    "spada-e-scudo": {
+        "name": "Spada e Scudo",
+        "id": "swsh1"
+    },
+    "fragore-ribelle": {
+        "name": "Fragore Ribelle",
+        "id": "swsh2"
+    },
+    "fiamme-oscure": {
+        "name": "Fiamme Oscure",
+        "id": "swsh3"
+    },
+    "futuri-campioni": {
+        "name": "Futuri Campioni",
+        "id": "swsh35"
+    },
+    "voltaggio-sfolgorante": {
+        "name": "Voltaggio Sfolgorante",
+        "id": "swsh4"
+    },
+    "destino-splendente": {
+        "name": "Destino Splendente",
+        "id": "swsh45"
+    },
+    "stili-di-lotta": {
+        "name": "Stili di Lotta",
+        "id": "swsh5"
+    },
+    "regno-glaciale": {
+        "name": "Regno Glaciale",
+        "id": "swsh6"
+    },
+    "evoluzioni-eteree": {
+        "name": "Evoluzioni Eteree",
+        "id": "swsh7"
+    },
+    "gran-festa": {
+        "name": "Gran Festa",
+        "id": "cel25"
+    },
+    "colpo-fusione": {
+        "name": "Colpo Fusione",
+        "id": "swsh8"
+    },
+    "astri-lucenti": {
+        "name": "Astri Lucenti",
+        "id": "swsh9"
+    },
+    "lucentezza-siderale": {
+        "name": "Lucentezza Siderale",
+        "id": "swsh10"
+    },
+    "pokemon-go": {
+        "name": "Pokémon Go",
+        "id": "pgo"
+    },
+    "origine-perduta": {
+        "name": "Origine Perduta",
+        "id": "swsh11"
+    },
+    "tempesta-argentata": {
+        "name": "Tempesta Argentata",
+        "id": "swsh12"
+    },
+    "zenit-regale": {
+        "name": "Zenit Regale",
+        "id": "swsh12pt5"
+    },
+    "scarlatto-e-violetto": {
+        "name": "Scarlatto e Violetto",
+        "id": "sv1"
+    },
+    "evoluzioni-a-paldea": {
+        "name": "Evoluzioni a Paldea",
+        "id": "sv2"
+    },
+    "ossidiana-infuocata": {
+        "name": "Ossidiana Infuocata",
+        "id": "sv3"
+    },
+    "151": {
+        "name": "151",
+        "id": "sv3pt5"
+    },
+    "paradosso-temporale": {
+        "name": "Paradosso Temporale",
+        "id": "sv4"
+    },
+    "destino-di-paldea": {
+        "name": "Destino di Paldea",
+        "id": "sv4pt5"
+    },
+    "cronoforze": {
+        "name": "Cronoforze",
+        "id": "sv5"
+    },
+    "crepuscolo-mascherato": {
+        "name": "Crepuscolo Mascherato",
+        "id": "sv6"
+    },
+    "segreto-fiabesco": {
+        "name": "Segreto Fiabesco",
+        "id": "sv6pt5"
+    },
+    "corona-astrale": {
+        "name": "Corona Astrale",
+        "id": "sv7"
+    },
+    "scintille-folgoranti": {
+        "name": "Scintille Folgoranti",
+        "id": "sv8"
+    },
+    "evoluzioni-prismatiche": {
+        "name": "Evoluzioni Prismatiche",
+        "id": "sv8pt5"
+    },
+    "avventure-insieme": {
+        "name": "Avventure Insieme",
+        "id": "sv9"
+    }
+  }

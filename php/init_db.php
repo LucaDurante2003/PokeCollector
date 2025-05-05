@@ -7,6 +7,9 @@ if (basename($_SERVER['PHP_SELF']) === 'error.php') {
 
 try {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
+    if ($conn->connect_error) {
+        throw new Exception("Connessione fallita");
+    }
     $db_check = $conn->query("SHOW DATABASES LIKE '" . $conn->real_escape_string(DB_NAME) . "'");
     if ($db_check->num_rows == 0) {
 

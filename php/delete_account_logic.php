@@ -39,8 +39,11 @@
             header('Location: ../impostazioni.php');
             exit;
         }
-    }catch (Exception $e){
+    } catch (Exception $e) {
         header('Location: ../error.php');
-    exit;
+        exit;
+    } catch (mysqli_sql_exception $e) {
+        header('Location: ../error.php');
+        exit;
     }
 ?>
