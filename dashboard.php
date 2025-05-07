@@ -81,7 +81,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
         <div class="row align-items-center mb-4">
             <div class="col-12 col-md-auto mb-3 mb-md-0">
                 <a href="homepage.php">
-                    <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img" style="height: 300px;">
+                  <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img" style="height: 300px;">
                 </a>
             </div>
         </div>
@@ -115,7 +115,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
            v-model="searchQuery"
            placeholder="Cerca per nome, rarità, tipo o illustratore...">
 
-    <button class="btn btn-outline-secondary" @click="clearSearch" v-if="searchQuery.length">
+    <button class="clear-btn" @click="clearSearch" v-if="searchQuery.length">
       <i class="fas fa-times"></i>
     </button>
   </div>
@@ -225,17 +225,17 @@ $expansionName = $mappingEspansioni[$slug]['name']
             <i class="fas fa-minus"></i>
           </button>
           <input type="number"
-                 class="form-control text-center"
+                 class="number-input-clean"
                  v-model.number="addQuantity"
                  min="1"
-                 style="width: 80px;" />
+                 readonly />
           <button type="button" class="btn round-btn ms-3" @click="incrementAdd">
             <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-orange" data-bs-dismiss="modal">Annulla</button>
         <button type="button" class="btn btn-orange" @click="confirmAdd">Conferma</button>
       </div>
     </div>
@@ -256,18 +256,18 @@ $expansionName = $mappingEspansioni[$slug]['name']
             <i class="fas fa-minus"></i>
           </button>
           <input type="number"
-                 class="form-control text-center"
+                 class="number-input-clean"
                  v-model.number="removeQuantity"
                  :max="copies"
                  min="1"
-                 style="width: 80px;" />
+                 readonly />
           <button type="button" class="btn round-btn ms-3" @click="incrementRemove">
             <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-orange" data-bs-dismiss="modal">Annulla</button>
         <button type="button" class="btn btn-orange" @click="confirmRemove">Conferma</button>
       </div>
     </div>
@@ -283,7 +283,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
     <div class="modal-content bg-transparent border-0">
       <div class="modal-body d-flex justify-content-center align-items-center position-relative">
       <!-- Pulsante di chiusura -->
-      <button class="btn-close position-absolute top-0 end-0 m-3" @click="closeFullscreen" aria-label="Chiudi"></button>
+      <button class="btn-close-carta-ingrandita position-absolute top-0 end-0 m-3" @click="closeFullscreen" aria-label="Chiudi"></button>
 
       <!-- Immagine ingrandita -->
       <img v-if="selectedCard" :src="selectedCard.img"
