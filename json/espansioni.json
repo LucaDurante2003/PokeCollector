@@ -13,7 +13,7 @@
     },
     "team-rocket": {
       "name": "Team Rocket",
-      "id": "base4"
+      "id": "base5"
     },
     "neo-genesis": {
       "name": "Neo Genesis",
@@ -33,15 +33,15 @@
     },
     "expedition-set-base": {
       "name": "Expedition Set Base",
-      "id": "base5"
+      "id": "ecard1"
     },
     "aquapolis": {
       "name": "Aquapolis",
-      "id": "base6"
+      "id": "ecard2"
     },
     "skyridge": {
       "name": "Skyridge",
-      "id": "base7"
+      "id": "ecard3"
     },
     "ex-rubino-e-zaffiro": {
       "name": "EX Rubino e Zaffiro",
@@ -176,16 +176,16 @@
         "id": "pl4"
     },
     "heartgold-soulsilver": {
-        "name": "HertGold & SoulSilver",
-        "id": "hggs1"
+        "name": "HeartGold & SoulSilver",
+        "id": "hgss1"
     },
     "forze-scatenate": {
         "name": "Forze Scatenate",
-        "id": "hggs2"
+        "id": "hgss2"
     },
     "senza-paura": {
         "name": "Senza Paura",
-        "id": "hggs3"
+        "id": "hgss3"
     },
     "battaglie-trionfali": {
         "name": "Battaglie Trionfali",
