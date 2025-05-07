@@ -47,14 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
         return match;
     }
 
-    password.addEventListener("input", checkPasswordsMatch);
-    confirmPassword.addEventListener("input", checkPasswordsMatch);
+    document.addEventListener("DOMContentLoaded", function () {
+        const password = document.getElementById('password');
+        if (password) {
+            password.addEventListener("input", checkPasswordsMatch);
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const confirmpassword = document.getElementById('confirm_password');
+        if (confirmpassword) {
+            confirmpassword.addEventListener("input", checkPasswordsMatch);
+        }
+    });
 
+    if (form) {
     form.addEventListener("submit", function (e) {
         if (!checkPasswordsMatch()) {
             e.preventDefault();
         }
     });
+}
+
 });
 
 /* Gestisce i controlli di password per la pagina delle impostazioni */
@@ -241,77 +254,87 @@ document.addEventListener("DOMContentLoaded", function (){ //aspetta che il DOM 
 
     let searchActive = false;
     let firstMatchCard = null; //memorizza la prima cella ch ha un'espansione che matcha la ricerca
+    
+    if(searchToggle){
+        searchToggle.addEventListener("click", function (){
+            //Se la ricerca è attiva ma la barra di ricerca è vuota (quindi ho cliccato sulla barra di ricerca ma non ho scritto nulla)
+            if (searchInput.classList.contains("active") && searchInput.value.trim() === "") {
+                searchInput.classList.remove("active");
+                searchActive = false;
+                clearHighlights();
+                window.scrollTo(0, 0); //riporta la pagina in alto
+            }
+            else{
+                searchInput.classList.add("active");
+                searchInput.focus(); //ottiene il focus per iniziare a scrivere
+                searchActive = true;
+            }
+        });
+    }
 
-    searchToggle.addEventListener("click", function (){
-        //Se la ricerca è attiva ma la barra di ricerca è vuota (quindi ho cliccato sulla barra di ricerca ma non ho scritto nulla)
-        if (searchInput.classList.contains("active") && searchInput.value.trim() === "") {
-            searchInput.classList.remove("active");
-            searchActive = false;
-            clearHighlights();
-            window.scrollTo(0, 0); //riporta la pagina in alto
-        }
-        else{
-            searchInput.classList.add("active");
-            searchInput.focus(); //ottiene il focus per iniziare a scrivere
-            searchActive = true;
-        }
-    });
-    //Quando l'utente scrive qualcosa...
-    searchInput.addEventListener("input", function (){
-        const searchValue = searchInput.value.toLowerCase(); //convertito tutto in minuscolo in modo che la ricerca sia case insensitive
-        firstMatchCard = null;
-        //fa vedere il bottone della X solo quando inizi a scrivere qualcosa
-        if (searchValue !== ""){
-            clearButton.style.display = "inline";
-        } 
-        else{
-            clearButton.style.display = "none";
-        }
-        //Itera su ogni cella
-        cards.forEach(card => {
-            const expansionButtons = card.querySelectorAll(".expansion-buttons a"); //prende tutti i bottoni delle espansioni di quella cella
-            let hasMatch = false;
-            //itera sui bottoni della cella
-            expansionButtons.forEach(btn => {
-                const text = btn.textContent.toLowerCase(); //prende il testo scritto sul bottone e lo converte in minuscolo sempre per rendere la ricerca case insensitive
-                if (text.includes(searchValue)) {
-                    hasMatch = true;
+    if(searchInput){
+        //Quando l'utente scrive qualcosa...
+        searchInput.addEventListener("input", function (){
+            const searchValue = searchInput.value.toLowerCase(); //convertito tutto in minuscolo in modo che la ricerca sia case insensitive
+            firstMatchCard = null;
+            //fa vedere il bottone della X solo quando inizi a scrivere qualcosa
+            if (searchValue !== ""){
+                clearButton.style.display = "inline";
+            } 
+            else{
+                clearButton.style.display = "none";
+            }
+            //Itera su ogni cella
+            cards.forEach(card => {
+                const expansionButtons = card.querySelectorAll(".expansion-buttons a"); //prende tutti i bottoni delle espansioni di quella cella
+                let hasMatch = false;
+                //itera sui bottoni della cella
+                expansionButtons.forEach(btn => {
+                    const text = btn.textContent.toLowerCase(); //prende il testo scritto sul bottone e lo converte in minuscolo sempre per rendere la ricerca case insensitive
+                    if (text.includes(searchValue)) {
+                        hasMatch = true;
+                    }
+                });
+
+                if (hasMatch){
+                    card.classList.add("highlight");
+                    if (!firstMatchCard) firstMatchCard = card; //se è il primo match che trova, lo memorizza
+                } 
+                else{
+                    card.classList.remove("highlight");
                 }
             });
 
-            if (hasMatch){
-                card.classList.add("highlight");
-                if (!firstMatchCard) firstMatchCard = card; //se è il primo match che trova, lo memorizza
+            if (searchValue === ""){
+                clearHighlights(); //toglie tutti gli highlight
+                window.scrollTo({ top: 0, behavior: "smooth" }); //torna in cima alla pagina in modo smooth
             } 
-            else{
-                card.classList.remove("highlight");
+            else if (firstMatchCard){
+                //se c’è almeno una cella che matcha, scrolla fino alla prima trovata.
+                firstMatchCard.scrollIntoView({ behavior: "smooth", block: "start" });
             }
         });
-
-        if (searchValue === ""){
-            clearHighlights(); //toglie tutti gli highlight
-            window.scrollTo({ top: 0, behavior: "smooth" }); //torna in cima alla pagina in modo smooth
-        } 
-        else if (firstMatchCard){
-            //se c’è almeno una cella che matcha, scrolla fino alla prima trovata.
-            firstMatchCard.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    });
-    //Quando clicchi sulla x
-    clearButton.addEventListener("click", function (){
-        searchInput.value = ""; //si svuota il campo
-        searchInput.dispatchEvent(new Event("input")); /*manda manualmente l'evento input in modo che il codice si accorga che l'input
-        è cambiato e che quindi deve fare certe cose a livello visivo (es togliere la X e gli highlight)*/
-        clearButton.style.display = "none"; //nasconde la x
-        searchInput.focus(); //riporta il focus sull’input
-    });
-    //se premi invio (anche mentre scrive)
-    searchInput.addEventListener("keydown", function (event){
-        if (event.key === "Enter" && firstMatchCard) {
-            //va alla prima cella che ha un match
-            firstMatchCard.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    });
+    }
+    
+    if(clearButton){
+        //Quando clicchi sulla x
+        clearButton.addEventListener("click", function (){
+            searchInput.value = ""; //si svuota il campo
+            searchInput.dispatchEvent(new Event("input")); /*manda manualmente l'evento input in modo che il codice si accorga che l'input
+            è cambiato e che quindi deve fare certe cose a livello visivo (es togliere la X e gli highlight)*/
+            clearButton.style.display = "none"; //nasconde la x
+            searchInput.focus(); //riporta il focus sull’input
+        });
+    }
+    if(searchInput){
+        //se premi invio (anche mentre scrive)
+        searchInput.addEventListener("keydown", function (event){
+            if (event.key === "Enter" && firstMatchCard) {
+                //va alla prima cella che ha un match
+                firstMatchCard.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    }
     //quando scrolli, se c'è del testo la barra di ricerca rimane aperta
     window.addEventListener("scroll", function (){
         if (searchInput.value.trim() !== ""){

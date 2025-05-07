@@ -15,7 +15,7 @@ if ($slug) {
   $cardsUrl = "https://api.pokemontcg.io/v2/cards"
     . "?q=set.id:$setId"
     . "&orderBy=number"
-    . "&select=id,name,images,rarity,types,number,artist,supertype";
+    . "&select=id,name,images,rarity,types,number,artist,supertype,cardmarket";
                
     $opts = [
         'http' => [
@@ -112,6 +112,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
 
     <input type="text"
            class="search-input flex-grow-1"
+           id="search_input"
            v-model="searchQuery"
            placeholder="Cerca per nome, rarità, tipo o illustratore...">
 
@@ -154,12 +155,18 @@ $expansionName = $mappingEspansioni[$slug]['name']
             <button
               v-for="(card, index) in filteredCards"
               
-              class="label pokedex-label btn btn-outline-secondary w-100 mb-2 text-start"
-              :class="{ hovered: currentIndex === index, active: selectedCard?.id === card.id, 'label-owned': ownedCards.has(card.id)}"
+              class="label pokedex-label btn btn-outline-secondary w-100 mb-2 text-start d-flex justify-content-between"
+              :class="{ hovered: currentIndex === index, active: selectedCard?.id === card.id}"
               @click="selectCard(card, index)"
               ref="labels"
             >
-              {{ card.name }}
+              <span class="text-start">{{ card.name }}</span>
+              <img
+                v-if="ownedCards.has(card.id)"
+                src="assets/img/pokeball.png"
+                alt="Poké Ball"
+                style="height: 25px; text-right"
+              />
             </button>
             <div v-if="!filteredCards.length" class="alert alert-warning">
               Nessuna carta trovata.
@@ -198,9 +205,17 @@ $expansionName = $mappingEspansioni[$slug]['name']
         <button class="round-btn mt-3" @click="openFullscreen">
           <i class="fas fa-expand"></i>
         </button>
+        <!-- pulsante per Cardmarket -->
+        <a v-if="selectedCard.cardmarketUrl"
+          class="round-btn mt-3 no-underline"
+          :href="selectedCard.cardmarketUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Vedi su Cardmarket">
+          <i class="fas fa-euro-sign"></i>
+        </a>
       </div>
     </div>
-
     <!-- Dettagli carta -->
     <div id="cardDetails" class="mt-4 text-orange">
       <strong>Rarità:</strong> {{ selectedCard.rarity }}<br>
@@ -226,6 +241,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
           </button>
           <input type="number"
                  class="number-input-clean"
+                 id="number_input_plus"
                  v-model.number="addQuantity"
                  min="1"
                  readonly />
@@ -257,6 +273,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
           </button>
           <input type="number"
                  class="number-input-clean"
+                 id="number_input_minus"
                  v-model.number="removeQuantity"
                  :max="copies"
                  min="1"

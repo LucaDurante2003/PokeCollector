@@ -19,11 +19,11 @@ include_once 'includes/header.php';
     <form action="php/register_logic.php" method="POST" class="px-3 px-sm-0 w-100" style="max-width: 400px;">
         <div class="mb-3">
             <label for="username" class="form-label text-orange">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required placeholder="Scegli un username">
+            <input type="text" class="form-control" id="username" name="username" autocomplete="on" required placeholder="Scegli un username">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label text-orange">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required placeholder="Inserisci la tua email">
+            <input type="email" class="form-control" id="email" name="email" autocomplete="on" required placeholder="Inserisci la tua email">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label text-orange">Password</label>

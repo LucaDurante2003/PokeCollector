@@ -22,8 +22,6 @@ createApp({
       filterOwned: false,
       showFullscreen: false,
 
-
-
       // Quantità per le modali
       addQuantity: 1,
       removeQuantity: 1,
@@ -40,8 +38,7 @@ createApp({
     progressPercent() {
       if (this.totalCards === 0) return 0;
       return Math.round((this.ownedCount / this.totalCards) * 100);
-    }
-    
+    },
   },
   created() {
     // Carichiamo subito le carte già presenti in window.APP_CONFIG.initialCards
@@ -52,9 +49,12 @@ createApp({
     .then(res => res.json())
     .then(ids => {
       ids.forEach(id => this.ownedCards.add(id));
-      if (this.cards.length) {
-        this.selectCard(this.cards[0]);
-      }
+      this.$nextTick(() => {
+        if (this.filteredCards.length > 0) {
+          this.currentIndex = 0;
+          this.selectCard(this.filteredCards[0], 0);
+        }
+      });
     });
   },
   mounted() {
@@ -71,7 +71,8 @@ createApp({
         img:    card.images.large || card.images.small,
         rarity: card.rarity || 'Common',
         type:   card.supertype,
-        artist: card.artist || 'Unknown'
+        artist: card.artist || 'Unknown',
+        cardmarketUrl: card.cardmarket?.url || ''
       };
       this.currentIndex = index;
       this.$nextTick(() => this.updateCursorPosition());

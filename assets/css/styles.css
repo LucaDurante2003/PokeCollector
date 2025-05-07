@@ -633,19 +633,6 @@ body{
 .search-input{
     transition: width 0.3s;
 }
-
-.label-owned{
-    background-color: green !important;
-    border-color: green !important;
-    color: black !important; /* testo leggibile */
-}
-
-.label-owned.active{
-    background-color: green !important;
-    border-color: green !important;
-    color: white !important;
-}
-
 /* Sfondo viola per la barra vuota */
 .custom-progress-bg {
     background-color: #412d5b !important; /* viola intenso */
@@ -659,4 +646,12 @@ body{
     color: black !important; /* testo nero */
     font-weight: bold;
 }
-  
+
+.no-underline {
+    text-decoration: none !important;
+}
+
+.pokedex-label:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

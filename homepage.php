@@ -19,7 +19,7 @@
         <button id="searchToggle" class="round-btn">
             <i class="fas fa-search"></i>
         </button>
-        <input type="text" class="search-input" placeholder="Cerca espansione...">
+        <input type="text" id="search" class="search-input" placeholder="Cerca espansione...">
         <button id="clearSearch" class="clear-btn">
             <i class="fas fa-times"></i>
         </button>
