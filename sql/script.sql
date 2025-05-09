@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS utenti(
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     data_registrazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    remember_token VARCHAR(255) DEFAULT NULL;
+    remember_token VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS collezioni(
