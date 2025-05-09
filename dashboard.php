@@ -115,7 +115,6 @@ $expansionName = $mappingEspansioni[$slug]['name']
            id="search_input"
            v-model="searchQuery"
            placeholder="Cerca per nome, rarità, tipo o illustratore...">
-
     <button class="clear-btn" @click="clearSearch" v-if="searchQuery.length">
       <i class="fas fa-times"></i>
     </button>
@@ -133,11 +132,14 @@ $expansionName = $mappingEspansioni[$slug]['name']
   <!-- Barra di progresso collezione -->
   <div class="progress-container my-3 text-center">
   <p class="mb-2 text-orange">Carte collezionate: {{ ownedCount }} / {{ totalCards }}</p>
-  <div class="progress w-75 mx-auto custom-progress-bg" style="height: 20px;">
+  <div class="progress w-75 mx-auto custom-progress-bg" style="height: 20px; position: relative;">
     <div class="progress-bar bg-orange" role="progressbar"
          :style="{ width: progressPercent + '%' }"
          :aria-valuenow="ownedCount" :aria-valuemin="0" :aria-valuemax="totalCards">
-      {{ progressPercent }}%
+    </div>
+    <div class="progress-text"
+         :style="{ color: progressPercent >= 50 ? 'black': 'rgba(255, 155, 0, 1)' }">
+         {{ progressPercent }}%
     </div>
   </div>
 </div>
@@ -192,7 +194,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
       </div>
 
       <!-- Colonna dei pulsanti -->
-      <div class="d-flex flex-column align-items-center mt-2">
+      <div class="d-flex flex-column align-items-center">
         <div class="round-btn mb-3 card-count">{{ copies }}</div>
         <button class="round-btn mb-3 card-add-btn" @click="openAddModal">
           <i class="fa fa-plus"></i>
@@ -243,8 +245,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
                  class="number-input-clean"
                  id="number_input_plus"
                  v-model.number="addQuantity"
-                 min="1"
-                 readonly />
+                 min="1"/>
           <button type="button" class="btn round-btn ms-3" @click="incrementAdd">
             <i class="fas fa-plus"></i>
           </button>
@@ -276,8 +277,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
                  id="number_input_minus"
                  v-model.number="removeQuantity"
                  :max="copies"
-                 min="1"
-                 readonly />
+                 min="1"/>
           <button type="button" class="btn round-btn ms-3" @click="incrementRemove">
             <i class="fas fa-plus"></i>
           </button>

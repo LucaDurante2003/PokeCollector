@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/*Controlla se 'password' e 'conferma password' sono uguali*/
+/*Controlla se 'password' e 'conferma password' sono uguali nella pagina di registrazione*/
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const password = document.querySelector("#password");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* Gestisce i controlli di password per la pagina delle impostazioni */
-document.addEventListener("DOMContentLoaded", function (){
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const oldPassword = document.querySelector("#old_password");
     const newPassword = document.querySelector("#new_password");
@@ -82,25 +82,20 @@ document.addEventListener("DOMContentLoaded", function (){
     const errorPasswordMatch = document.querySelector("#password-error");
 
     let oldPasswordIsValid = false;
-    let currentRequestId = 0; //serve per gestire le richieste asincrone e evitare conflitti tra le risposte
+    let currentRequestId = 0;
 
-    if (form && oldPassword && newPassword && confirmPassword){
-        
-        //Funzione che verifica se la nuova password e la conferma password corrispondono
-        function checkPasswordsMatch(){
+    if (form && newPassword && confirmPassword) {
+
+        function checkPasswordsMatch() {
             const match = newPassword.value === confirmPassword.value && confirmPassword.value !== "";
-            const bothEmpty = newPassword.value === "" && confirmPassword.value === "";
 
-            //Reset classi e messaggio di errore
             confirmPassword.classList.remove("is-valid", "is-invalid");
             errorPasswordMatch.classList.add("d-none");
 
-            //Mostra errore solo quando si scrive nel campo di conferma password
-            if (confirmPassword.value !== ""){
-                if (match){
+            if (confirmPassword.value !== "") {
+                if (match) {
                     confirmPassword.classList.add("is-valid");
-                } 
-                else{
+                } else {
                     confirmPassword.classList.add("is-invalid");
                     errorPasswordMatch.classList.remove("d-none");
                 }
@@ -109,11 +104,23 @@ document.addEventListener("DOMContentLoaded", function (){
             return match;
         }
 
-        //Funzione per confrontare la vecchia password con quella inserita
-        function checkOldPassword() {
-            const value = oldPassword.value.trim(); //rimuove gli spazi vuoti all'inizio e alla fine
+        function checkNewVsOld() {
+            if (oldPassword && newPassword.value === oldPassword.value) {
+                newPassword.classList.add("is-invalid");
+                errorSameAsOld.classList.remove("d-none");
+            } else {
+                newPassword.classList.remove("is-invalid");
+                errorSameAsOld.classList.add("d-none");
+            }
+        }
 
-            //Se la vecchia password è vuota, resetta tutto
+        function checkOldPassword() {
+            if (!oldPassword) {
+                oldPasswordIsValid = true; // Se non c'è il campo, consideriamo la validazione superata
+                return;
+            }
+
+            const value = oldPassword.value.trim();
             if (value === "") {
                 oldPassword.classList.remove("is-invalid");
                 errorOldPassword.classList.add("d-none");
@@ -121,84 +128,70 @@ document.addEventListener("DOMContentLoaded", function (){
                 return;
             }
 
-            //Incrementa l'ID della richiesta per evitare che risposte precedenti interferiscano con la logica
             const requestId = ++currentRequestId;
 
-            //Esegue una richiesta asincrona per verificare la vecchia password nel database
             fetch("php/check_old_pw_logic.php?ts=" + Date.now(), {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `old_password=${encodeURIComponent(value)}`
             })
-            .then(response => response.json()) //elabora la risposta come json
-            .then(data => {
-                if (requestId !== currentRequestId) return;
+                .then(response => response.json())
+                .then(data => {
+                    if (requestId !== currentRequestId) return;
 
-                if (data.success){
-                    oldPassword.classList.add("is-valid");
-                    oldPassword.classList.remove("is-invalid");
-                    errorOldPassword.classList.add("d-none");
-                    oldPasswordIsValid = true;
-                } 
-                else{
-                    oldPassword.classList.remove("is-valid");
-                    oldPassword.classList.add("is-invalid");
-                    errorOldPassword.classList.remove("d-none");
-                    oldPasswordIsValid = false;
-                }
-            })
-            .catch(error => {
-                console.error("Errore nella verifica della vecchia password:", error);
+                    if (data.success) {
+                        oldPassword.classList.add("is-valid");
+                        oldPassword.classList.remove("is-invalid");
+                        errorOldPassword.classList.add("d-none");
+                        oldPasswordIsValid = true;
+                    } else {
+                        oldPassword.classList.remove("is-valid");
+                        oldPassword.classList.add("is-invalid");
+                        errorOldPassword.classList.remove("d-none");
+                        oldPasswordIsValid = false;
+                    }
+                })
+                .catch(error => {
+                    console.error("Errore nella verifica della vecchia password:", error);
+                });
+        }
+
+        // EVENTI
+
+        if (oldPassword) {
+            oldPassword.addEventListener("input", function () {
+                oldPassword.classList.remove("is-invalid", "is-valid");
+                errorOldPassword.classList.add("d-none");
+                oldPasswordIsValid = false;
             });
+
+            oldPassword.addEventListener("blur", checkOldPassword);
         }
 
-        //Funzione per controllare che la nuova password non sia la stessa della vecchia
-        function checkNewVsOld() {
-            if (newPassword.value === oldPassword.value){
-                newPassword.classList.add("is-invalid");
-                errorSameAsOld.classList.remove("d-none");
-            } 
-            else{
-                newPassword.classList.remove("is-invalid");
-                errorSameAsOld.classList.add("d-none");
-            }
-        }
-
-        // Controllo della vecchia password
-        oldPassword.addEventListener("input", function () {
-            oldPassword.classList.remove("is-invalid", "is-valid");
-            errorOldPassword.classList.add("d-none");
-            oldPasswordIsValid = false;
-        });
-
-        //Quando l'utente esce dal campo di input, controlla la vecchia password
-        oldPassword.addEventListener("blur", function () {
-            checkOldPassword(); //Verifica la vecchia password quando esce dal campo
-        });
-
-        //Controllo della nuova password
-        newPassword.addEventListener("input", function () {
-            checkNewVsOld(); //Verifica che la nuova password non sia uguale a quella vecchia
-        });
-
-        //Controllo della conferma della password
+        newPassword.addEventListener("input", checkNewVsOld);
         confirmPassword.addEventListener("input", checkPasswordsMatch);
 
-        //Impedire il submit del form se c'è qualche errore
         form.addEventListener("submit", function (e) {
-            checkOldPassword();
             checkPasswordsMatch();
             checkNewVsOld();
+            checkOldPassword();
 
-            if (!oldPasswordIsValid || newPassword.classList.contains("is-invalid") || confirmPassword.classList.contains("is-invalid")) {
-                e.preventDefault(); // Se c'è un errore, impediamo il submit
+            const newAndConfirmValid = !newPassword.classList.contains("is-invalid") &&
+                                       !confirmPassword.classList.contains("is-invalid");
+
+            if (!oldPassword || oldPasswordIsValid) {
+                if (!newAndConfirmValid) {
+                    e.preventDefault();
+                }
+            } else {
+                e.preventDefault();
             }
         });
     }
 });
 
 
-// ------------ GESTIONE ELIMINAZIONE ACCOUNT ------------ 
+// ------------ GESTIONE MODALE PER ELIMINAZIONE ACCOUNT ------------ 
 window.addEventListener('DOMContentLoaded', function () {
     const accountDeletedModal = document.getElementById('accountDeletedModal');
 

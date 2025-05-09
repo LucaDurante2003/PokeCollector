@@ -1,9 +1,9 @@
-html{
+/*html{
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita lo scroll orizzontale */
+    overflow-x: hidden; /* Evita lo scroll orizzontale 
     box-sizing: border-box;
-}
+}*/
 
 /*Gestisce il layout e lo stile del footer, utilizzando Flexbox per centrare il contenuto*/
 .footer{
@@ -141,8 +141,6 @@ quindi è 0.8*16px = 12,8px*/
     font-weight: 500;
     width: 60px;
     appearance: textfield; /* rimuove spinner in alcuni browser */
-    cursor: default;
-    user-select: none;
 }
   
 .number-input-clean::-webkit-outer-spin-button,
@@ -288,7 +286,7 @@ body{
 }
 
 /*Per aggiungere l'evidenziazione se usi la barra di ricerca e trovi un match*/
-.card.highlight {
+.card.highlight{
     outline: 3px solid #ffa500;
     border-radius: 8px;
     transition: outline 0.2s ease;
@@ -467,9 +465,10 @@ body{
 #scrollTopBtn{
     position: fixed;
     bottom: 16px;
-    right: 16px;
+    right: 35px;
     display: none; /*Nascosto finché non si scrolla*/
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 9999;
 }
 
 #scrollTopBtn:hover{
@@ -630,12 +629,18 @@ body{
     color: white;
 }
 
+.pokedex-label:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .search-input{
     transition: width 0.3s;
 }
+
 /* Sfondo viola per la barra vuota */
 .custom-progress-bg {
-    background-color: #412d5b !important; /* viola intenso */
+    background-color: #412d5b !important;
     border-radius: 10px;
 }
   
@@ -643,15 +648,20 @@ body{
 .bg-orange{
     background-color: rgba(255,155,0,255) !important;
     border-radius: 10px;
-    color: black !important; /* testo nero */
+}
+
+.progress-text{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: 20px; /* stessa altezza della barra */
     font-weight: bold;
-}
+    z-index: 10;
+    transition: color 0.3s ease;
+}  
 
-.no-underline {
+.no-underline{
     text-decoration: none !important;
-}
-
-.pokedex-label:focus {
-    outline: none !important;
-    box-shadow: none !important;
 }
