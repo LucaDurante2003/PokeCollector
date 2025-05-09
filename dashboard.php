@@ -152,7 +152,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
         <div class="pokedex-sidebar card-body w-100" ref="sidebar">
           <h5 class="text-orange-title-dashboard text-center mb-3">Carte disponibili</h5>
           <div class="labels-wrapper text-center">
-            <div class="pokedex-cursor" :style="{ top: cursorTop + 'px' }"></div>
+            <div v-if="filteredCards.length > 0" class="pokedex-cursor" :style="{ top: cursorTop + 'px' }"></div>
 
             <button
               v-for="(card, index) in filteredCards"
