@@ -89,14 +89,14 @@ $expansionName = $mappingEspansioni[$slug]['name']
 
 <div id="app" class="d-flex flex-column">
 <!-- Bottone impostazioni -->
-<div class="settings-wrapper" v-if="!showFullscreen">
+<div class="settings-wrapper" v-show="!showFullscreen">
     <button id="settingsBtn" class="round-btn"><i class="fas fa-cog"></i></button>
     <div id="settingsMenu" class="dropdown-menu">
         <a href="impostazioni.php" class="dropdown-item">Gestione Account</a>
     </div>
 </div>
 <!-- Barra di ricerca funzionante con Vue -->
-<div class="search-wrapper" v-if="!showFullscreen">
+<div class="search-wrapper" v-show="!showFullscreen">
   <div class="search-container d-flex align-items-center gap-2">
     <!-- Pulsante lente identico a quello delle impostazioni -->
     <button class="round-btn" @click="applySearch" title="Cerca">

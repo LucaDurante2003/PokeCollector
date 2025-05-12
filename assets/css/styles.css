@@ -343,7 +343,7 @@ body{
     position: fixed;
     top: 16px;
     right: 25px;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 /*Menù a tendina*/
@@ -441,6 +441,19 @@ body{
     color: black;
     font-weight: 600;
     opacity: 100;
+}
+
+@media (max-width: 576px){
+    .search-container:hover{
+        width: 80%;
+    }
+
+    /*Aggiunge i puntini di sospensione se la scritta va oltre la larghezza del container*/
+    .search-container .search-input{
+        white-space: nowrap; /*Impedisce al testo di andare a capo*/
+        overflow: hidden; /*Nasconde la parte di testo che eccede dal contenitore*/
+        text-overflow: ellipsis; /*Sostituisce il testo nascosto con ...*/
+    }
 }
 
 /*Pulsante X nella barra di ricerca*/
