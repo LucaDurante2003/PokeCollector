@@ -195,6 +195,10 @@ createApp({
 
     // Conferme modali
     async confirmAdd() {
+      if (this.addQuantity < 0) {
+        this.showMessage('Numero di copie da rimuovere non valido', 'alert-danger');
+        return;
+      }
       // Esegui l’update
       await this.updateCollection('add', this.addQuantity);
       // Chiudi modale
@@ -205,6 +209,10 @@ createApp({
     async confirmRemove() {
       if (this.removeQuantity > this.copies) {
         this.showMessage('Numero di copie da rimuovere superiore al numero di copie possedute', 'alert-danger');
+        return;
+      }
+      else if (this.removeQuantity < 0) {
+        this.showMessage('Numero di copie da rimuovere non valido', 'alert-danger');
         return;
       }
       await this.updateCollection('remove', this.removeQuantity);

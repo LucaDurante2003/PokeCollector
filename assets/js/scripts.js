@@ -211,9 +211,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const settingsBtn = document.getElementById("settingsBtn");
     const settingsMenu = document.getElementById("settingsMenu");
 
+    // Chiudi il menu se clicchi fuori
+    document.addEventListener("click", function (e) {
+        if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+            settingsMenu.style.display = "none";
+        }
+    });
+
     if (settingsBtn && settingsMenu) {
-        settingsBtn.addEventListener("click", function () {
-            settingsMenu.style.display = (settingsMenu.style.display === "block") ? "none" : "block";
+        settingsBtn.addEventListener("click", function (e) {
+            e.stopPropagation(); // Impedisce il bubbling
+            const visible = settingsMenu.style.display === "block";
+            settingsMenu.style.display = visible ? "none" : "block";
         });
     }
 });

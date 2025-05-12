@@ -6,7 +6,7 @@
 ?>
 
 <body class="d-flex flex-column min-vh-100">
-    <div class="flex-column main-content">
+    <div class="flex-column main-content margin-desktop">
         <?php if (!$resetMode): ?>
             <a href="homepage.php">
                 <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img" style="height: 300px;">

@@ -65,6 +65,13 @@ quindi è 0.8*16px = 12,8px*/
     align-items: center; /* Centra il contenuto verticalmente */
 }
 
+/*Per risolvere il problema dell'allineamento verticale in impostazioni.php con reset_pw = 1*/
+@media (min-width: 768px) {
+  .margin-desktop {
+    margin-top: 230px;
+  }
+}
+
 /*Stile di un bottone*/
 .btn-orange{
     background-color: rgba(255,155,0,255);

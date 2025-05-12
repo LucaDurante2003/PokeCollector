@@ -313,8 +313,7 @@ $expansionName = $mappingEspansioni[$slug]['name']
 </div>
 
 
-  <?php include_once 'includes/footer.php'; ?>
-</div>
+<?php include_once 'includes/footer.php'; ?>
 
 <!-- Vue + script -->
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
