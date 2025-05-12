@@ -360,10 +360,10 @@
         </div>
     </div>
 
-<!-- Freccetta per tornare su-->
-<button id="scrollTopBtn" class="round-btn">
-  <i class="fas fa-arrow-up"></i>
-</button>
+    <!-- Freccetta per tornare su-->
+    <button id="scrollTopBtn" class="round-btn">
+    <i class="fas fa-arrow-up"></i>
+    </button>
 
 <?php
     include_once 'includes/footer.php';

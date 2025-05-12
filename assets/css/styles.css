@@ -1,9 +1,11 @@
-/*html{
-    margin: 0;
+html{
+    /*margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita lo scroll orizzontale 
-    box-sizing: border-box;
-}*/
+    overflow-x: hidden;  /*Evita lo scroll orizzontale
+    box-sizing: border-box;*/
+    height: 100%;
+    flex: 1;
+}
 
 /*Gestisce il layout e lo stile del footer, utilizzando Flexbox per centrare il contenuto*/
 .footer{
@@ -17,8 +19,6 @@
     text-align: center; /* Centra il testo */
     width: 100%;
     box-sizing: border-box;
-    position: relative;
-    left: 0;
 }
 
 /*Per tutti gli schermi che hanno una larghezza massima di 576px (mobile),
@@ -27,7 +27,7 @@ quindi è 0.8*16px = 12,8px*/
 @media (max-width: 576px){
     .footer{
         font-size: 0.8rem;
-        width: 100vw;
+        width: 100%;
     }
 }
 
@@ -335,7 +335,7 @@ body{
 .settings-wrapper{
     position: fixed;
     top: 16px;
-    right: 35px;
+    right: 25px;
     z-index: 1000;
 }
 
@@ -344,18 +344,11 @@ body{
     display: none;
     position: fixed;
     top: 70px;  /*Sotto il bottone delle impostazioni*/
-    right: 35px;
+    right: 25px;
     background-color: rgba(255,155,0,255);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 8px;
     padding: 10px;
-}
-
-@media (max-width: 576px){
-    .settings-wrapper,
-    #settingsMenu{
-        right: 10px;
-    }
 }
 
 #settingsMenu:hover{
@@ -465,7 +458,7 @@ body{
 #scrollTopBtn{
     position: fixed;
     bottom: 16px;
-    right: 35px;
+    right: 25px;
     display: none; /*Nascosto finché non si scrolla*/
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 9999;
@@ -474,6 +467,14 @@ body{
 #scrollTopBtn:hover{
     transform: translateY(-5px); /* Lo sposta leggermente in alto */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Un piccolo effetto ombra */
+}
+
+@media (max-width: 576px){
+    .settings-wrapper,
+    #settingsMenu,
+    #scrollTopBtn{
+        right: 10px;
+    }
 }
 
 .pokedex-sidebar-header,
