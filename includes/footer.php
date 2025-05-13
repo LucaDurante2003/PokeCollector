@@ -1,4 +1,4 @@
-<footer class="footer mt-auto">
+<footer class="footer">
     <p>&copy;PokéCollector - Progetto del corso Tecnologie e Sistemi Web A.A. 2024/2025 - Sapienza Università di Roma.</p>
 </footer>
 

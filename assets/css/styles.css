@@ -4,7 +4,6 @@ html{
     overflow-x: hidden;  /*Evita lo scroll orizzontale
     box-sizing: border-box;*/
     height: 100%;
-    flex: 1;
 }
 
 /*Gestisce il layout e lo stile del footer, utilizzando Flexbox per centrare il contenuto*/
@@ -63,13 +62,6 @@ quindi è 0.8*16px = 12,8px*/
     display: flex; /* Usa Flexbox per il layout */
     justify-content: center; /* Centra il contenuto orizzontalmente */
     align-items: center; /* Centra il contenuto verticalmente */
-}
-
-/*Per risolvere il problema dell'allineamento verticale in impostazioni.php con reset_pw = 1*/
-@media (min-width: 768px) {
-  .margin-desktop {
-    margin-top: 230px;
-  }
 }
 
 /*Stile di un bottone*/

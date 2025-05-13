@@ -6,7 +6,7 @@
 ?>
 
 <body class="d-flex flex-column min-vh-100">
-    <div class="flex-column main-content margin-desktop">
+    <div class="flex-column main-content">
         <?php if (!$resetMode): ?>
             <a href="homepage.php">
                 <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img" style="height: 300px;">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 
         <!--Se l'eliminazione dell'account ha avuto successo si apre una finestra modale di conferma e si viene
         reinderizzati alla pagina iniziale di benvenuto. Ho scritto così l'if perchè non mi permetteva di mischiare php e
@@ -149,6 +149,7 @@
             <?php unset($_SESSION['account_deleted']); ?>
         <?php endif; ?>
     <?php endif; ?>
+    </div>
 
 <?php
     include_once 'includes/footer.php';

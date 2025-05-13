@@ -211,12 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const settingsBtn = document.getElementById("settingsBtn");
     const settingsMenu = document.getElementById("settingsMenu");
 
-    // Chiudi il menu se clicchi fuori
-    document.addEventListener("click", function (e) {
-        if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
-            settingsMenu.style.display = "none";
-        }
-    });
+    if(settingsBtn && settingsMenu) {  
+        // Chiudi il menu se clicchi fuori
+        document.addEventListener("click", function (e) {
+            if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+                settingsMenu.style.display = "none";
+            }
+        });
+    }
 
     if (settingsBtn && settingsMenu) {
         settingsBtn.addEventListener("click", function (e) {
@@ -279,12 +281,14 @@ document.addEventListener("DOMContentLoaded", function (){ //aspetta che il DOM 
         searchInput.addEventListener("input", function (){
             const searchValue = searchInput.value.toLowerCase(); //convertito tutto in minuscolo in modo che la ricerca sia case insensitive
             firstMatchCard = null;
-            //fa vedere il bottone della X solo quando inizi a scrivere qualcosa
-            if (searchValue !== ""){
-                clearButton.style.display = "inline";
-            } 
-            else{
-                clearButton.style.display = "none";
+            if(clearButton){
+                //fa vedere il bottone della X solo quando inizi a scrivere qualcosa
+                if (searchValue !== ""){
+                    clearButton.style.display = "inline";
+                } 
+                else{
+                    clearButton.style.display = "none";
+                }
             }
             //Itera su ogni cella
             cards.forEach(card => {
@@ -337,12 +341,14 @@ document.addEventListener("DOMContentLoaded", function (){ //aspetta che il DOM 
             }
         });
     }
-    //quando scrolli, se c'è del testo la barra di ricerca rimane aperta
-    window.addEventListener("scroll", function (){
-        if (searchInput.value.trim() !== ""){
-            searchInput.classList.add("active");
-        }
-    });
+    if(searchInput){
+        //quando scrolli, se c'è del testo la barra di ricerca rimane aperta
+        window.addEventListener("scroll", function (){
+            if (searchInput.value.trim() !== ""){
+                searchInput.classList.add("active");
+            }
+        });
+    }
     //Rimuove tutti gli highlight delle celle ( = "pulisce" i risulati)
     function clearHighlights() {
         cards.forEach(card => {
