@@ -284,6 +284,12 @@ body{
     border-bottom: none;
 }
 
+.card-header img{
+    max-width: 165px; /* Imposta una larghezza massima per l'immagine */
+    height: auto; /* Mantiene le proporzioni corrette */
+    object-fit: contain; /* Rende l'immagine contenuta, senza deformarsi */
+}
+
 /*Per aggiungere l'evidenziazione se usi la barra di ricerca e trovi un match*/
 .card.highlight{
     outline: 3px solid #ffa500;
