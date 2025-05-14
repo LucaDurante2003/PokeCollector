@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/*Controlla se 'password' e 'conferma password' sono uguali nella pagina di registrazione*/
+/* Controlla se 'password' e 'conferma password' sono uguali nella pagina di registrazione */
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const password = document.querySelector("#password");

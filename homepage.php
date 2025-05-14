@@ -1,11 +1,13 @@
 <?php
+    // Avvia la sessione
     session_start();
     include_once 'includes/header.php';
 
+    // Carica e decodifica il file JSON con la lista delle espansioni
     $mappingFile = 'json/espansioni.json';
     $expansioni = json_decode(file_get_contents($mappingFile), true);
 
-    // Mappa per immagini delle serie
+    // Mappa delle immagini per ogni serie
     $serieImages = [
         'base' => 'assets/img/serie_base.png',
         'neo' => 'assets/img/neo_genesis.png',
@@ -23,7 +25,7 @@
         'sv' => 'assets/img/scarlatto_violetto.png'
     ];
 
-    // Mappa per nomi delle serie
+    // Nomi delle serie (usati per il titolo della card)
     $serieNames = [
         'base' => 'Serie Base',
         'neo' => 'Serie Neo',
@@ -85,7 +87,7 @@
             'name' => $data['name']
         ];
     }
-
+    // Converte la mappa in array
     $serieArray = array_values($serieMap);
 ?>
 

@@ -1,4 +1,5 @@
 <?php
+// Inizia la sessione
 session_start();
 include_once 'includes/header.php';
 require_once 'includes/config.php';
@@ -7,22 +8,25 @@ require_once 'includes/config.php';
 $slug = $_GET['slug'] ?? '';
 $mappingFile = 'json/espansioni.json';
 $mappingEspansioni = json_decode(file_get_contents($mappingFile), true);
+// API key per PokéTCG.io
 $apiKey = '24b29428-bc99-42f0-b4c8-d126c079bc33';
-$cards = [];
-$ownedCount = 0;
+$cards = []; // Elenco carte ottenute via API
+$ownedCount = 0; // Conteggio carte possedute per questa espansione
 if ($slug) {
-  $setId = urlencode($mappingEspansioni[$slug]['id'] ?? $slug);
+  $setId = urlencode($mappingEspansioni[$slug]['id'] ?? $slug); // ID ufficiale dell'espansione
+  // Costruisco URL per la chiamata API
   $cardsUrl = "https://api.pokemontcg.io/v2/cards"
     . "?q=set.id:$setId"
     . "&orderBy=number"
     . "&select=id,name,images,rarity,types,number,artist,supertype,cardmarket";
-               
+    // Imposta intestazioni HTTP con API key       
     $opts = [
         'http' => [
             'method' => 'GET',
             'header' => 'X-Api-Key: ' . $apiKey
         ]
     ];
+    // Effettua richiesta API
     $json = @file_get_contents($cardsUrl, false, stream_context_create($opts));
     $cards = json_decode($json, true)['data'] ?? [];
     // Calcola quante carte possiede l'utente per questa espansione
@@ -30,7 +34,7 @@ if ($slug) {
       $cardIds = array_column($cards, 'id');
       $placeholders = implode(',', array_fill(0, count($cardIds), '?'));
       $types = str_repeat('s', count($cardIds));
-      
+      // Connessione al database
       try{
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($conn->connect_error) {
@@ -58,11 +62,11 @@ if ($slug) {
       }
     }
 }
-// Trova l'espansione
+// Nome dell'espansione da mostrare
 $expansionName = $mappingEspansioni[$slug]['name'] 
                ?? ($mappingEspansioni[$slug] ?? 'Espansione sconosciuta');
 
-// Render
+// Passaggio dati PHP → JavaScript (Vue)
 ?>
 
 <script>
@@ -176,8 +180,8 @@ $expansionName = $mappingEspansioni[$slug]['name']
           </div>
         </div>
       </div>
-      <!-- Destra: preview carta -->
-    
+      
+<!-- Destra: preview carta -->  
 <div class="col-12 col-md-6 d-flex justify-content-center">
   <div v-if="selectedCard" class="card-body text-center w-100" id="cardDisplay">
     <h5 class="text-orange-title-dashboard display-6 mb-3">{{ selectedCard.name }}</h5>

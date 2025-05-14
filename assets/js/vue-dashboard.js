@@ -3,23 +3,26 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      // Dati provenienti dal backend
       slug: window.APP_CONFIG.slug,
       expansions: window.APP_CONFIG.expansions,
       apiKey: window.APP_CONFIG.apiKey,
+      // Dati principali per gestione carte
       cards: [],
       ownedCards: new Set(),
       filteredCards: [],
       selectedCard: null,
       possessed: false,
       copies: 0,
+      // UI e interazioni
       searchVisible: false,
-      searchQuery: '',
+      searchQuery: localStorage.getItem(`searchQuery_${window.APP_CONFIG.slug}`) || '',
       settingsOpen: false,
       cursorTop: 0,
       currentIndex: 0,
       ownedCount: window.APP_CONFIG.ownedCount || 0,
       totalCards: window.APP_CONFIG.totalCards || 0,
-      filterOwned: false,
+      filterOwned: localStorage.getItem(`filterOwned_${window.APP_CONFIG.slug}`) === 'true',
       showFullscreen: false,
 
       // Quantità per le modali
@@ -33,9 +36,11 @@ createApp({
   },
   computed: {
     expansionName() {
+      // Nome dell'espansione corrente
       return this.expansions[this.slug]?.name || 'Espansione sconosciuta';
     },
     progressPercent() {
+      // Percentuale collezione completata
       if (this.totalCards === 0) return 0;
       return Math.round((this.ownedCount / this.totalCards) * 100);
     },
@@ -65,6 +70,7 @@ createApp({
   },
   methods: {
     async selectCard(card,index) {
+      // Imposta i dati della carta selezionata
       this.selectedCard = {
         id:     card.id,
         name:   card.name,
@@ -75,6 +81,7 @@ createApp({
         cardmarketUrl: card.cardmarket?.url || ''
       };
       this.currentIndex = index;
+      // Aggiorna posizione cursore
       this.$nextTick(() => this.updateCursorPosition());
       // Verifica possesso su server
       const resp = await fetch(`php/verifica_possesso.php?card_id=${card.id}`);
@@ -107,6 +114,7 @@ createApp({
       const isOwned = this.ownedCards.has(c.id);
       return this.filterOwned ? matchesQuery && isOwned : matchesQuery;
   });
+      // Seleziona la prima carta filtrata (o nessuna)
       this.currentIndex = 0;
       this.$nextTick(() => {
         if (this.filteredCards.length > 0) {
@@ -276,6 +284,15 @@ createApp({
         console.error('Errore rete:', err);
         this.showMessage('Errore di rete. Riprova più tardi.', 'alert-danger');
       }
+    }
+  },
+  // Salvataggio automatico su localStorage
+  watch: {
+    searchQuery(newVal) {
+      localStorage.setItem(`searchQuery_${this.slug}`, newVal);
+    },
+    filterOwned(newVal) {
+      localStorage.setItem(`filterOwned_${this.slug}`, newVal);
     }
   }
 

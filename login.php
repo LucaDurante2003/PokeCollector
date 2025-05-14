@@ -3,12 +3,16 @@
     include_once 'includes/header.php';
     include_once 'includes/config.php';
 
-    //Se non è loggato ma ha il cookie remember_token
+    // Se non è loggato ma ha il cookie remember_token
     if (isset($_COOKIE['remember_token'])) {
         $token = $_COOKIE['remember_token'];
 
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        if (!$conn->connect_error) {
+        try{
+            // Connessione al database
+            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            if ($conn->connect_error) {
+                throw new Exception("Connessione fallita");
+            }
             $stmt = $conn->prepare("SELECT id, nome FROM utenti WHERE remember_token = ?");
             $stmt->bind_param("s", $token);
             $stmt->execute();
@@ -16,6 +20,7 @@
 
             if ($result->num_rows === 1) {
                 $user = $result->fetch_assoc();
+                // Salva le info utente nella sessione
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['nome'];
 
@@ -23,9 +28,14 @@
                 header('Location: homepage.php');
                 exit;
             }
-
             $stmt->close();
             $conn->close();
+        } catch (Exception $e){
+            header('Location: error.php');
+            exit;
+        } catch (mysqli_sql_exception $e) {
+            header('Location: error.php');
+            exit;
         }
     }
 ?>
@@ -35,14 +45,17 @@
         <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
         <h2 class="text-orange-title mb-3">Accedi al tuo account</h2>
         <?php
+            // Messaggio di successo post-registrazione
             if (isset($_SESSION['success_register'])) {
                 echo '<div class="success-message">' . $_SESSION['success_register'] . '</div>';
                 unset($_SESSION['success_register']);
             }
+            // Messaggio di errore se il login fallisce
             if (isset($_SESSION['error_login'])) {
                 echo '<div class="error-message">' . $_SESSION['error_login'] . '</div>';
                 unset($_SESSION['error_login']);
             }
+            // Messaggio di successo se la password è stata cambiata
             if (isset($_SESSION['success_pw_change'])) {
                 echo '<div class="success-message">' .  $_SESSION['success_pw_change'] . '</div>';
                 unset( $_SESSION['success_pw_change']);
@@ -53,10 +66,12 @@
         Usati in combinazione, fanno in modo che SOLO sugli schermi molto piccoli (mobile) ci sia un padding laterale di 3, in modo che
         i rettangoli dei vari input e i bottoni non occupino tutta la larghezza della pagina (su desktop quindi non c'è questo padding e lo vedi normale)--> 
         <form action="php/login_logic.php" method="POST" class="px-3 px-sm-0 w-100" style="max-width: 400px;">
+            <!-- Campo email -->
             <div class="mb-3">
                 <label for="email" class="form-label text-orange">Email</label>
                 <input type="email" class="form-control" id="email" name="email" autocomplete="on" required placeholder="Inserisci la tua email">
             </div>
+            <!-- Campo password con icona per mostrare/nascondere -->
             <div class="mb-3">
                 <label for="password" class="form-label text-orange">Password</label>
                 <div class="input-group">
@@ -66,15 +81,19 @@
                     </span>
                 </div>
             </div>
+            <!-- Checkbox "Mantieni l'accesso" + link "password dimenticata" -->
             <div class="mb-3 d-flex justify-content-between align-items-center w-100" style="max-width: 400px">
                 <div class="form-check m-0">
                     <input class="form-check-input" type="checkbox" id="checkbox" name="checkbox">
                     <label for="checkbox" class="form-label text-orange">Mantieni l'accesso</label>
                 </div>
+                <!-- Link per reimpostare la password -->
                 <a href="impostazioni.php?reset_pw=1" class="text-orange text-decoration-none fw-bold small" style="position: relative; top: -2px;">Hai dimenticato la password?</a>
             </div>
+            <!-- Pulsante di login -->
             <button type="submit" class="btn btn-orange w-100">Accedi</button>
         </form>
+        <!-- Link alla registrazione per chi non ha un account -->
         <p class="mt-3 text-white">Non hai un account? <a href="register.php" class="text-orange text-decoration-none fw-bold">Registrati</a></p>
     </div>
 

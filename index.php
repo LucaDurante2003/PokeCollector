@@ -9,7 +9,9 @@
     <h1 class="main-title">Benvenuto su PokéCollector</h1>
     <p class="lead mb-4">Organizza e tieni traccia della tua collezione di carte Pokémon con facilità.</p>
     <div>
+        <!-- Link per login -->
         <a href="login.php" class="btn btn-orange m-2">Accedi</a>
+        <!-- Link per registrazione -->
         <a href="register.php" class="btn btn-orange m-2">Registrati</a>
     </div>
 </div>

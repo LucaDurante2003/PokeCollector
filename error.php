@@ -1,8 +1,10 @@
 <?php
+// Avvia la sessione
 session_start();
 include_once 'includes/header.php';
 include_once 'includes/config.php';
 
+// Funzione che prova a connettersi al database
 function checkDatabaseConnection() {
     try {
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
@@ -11,12 +13,12 @@ function checkDatabaseConnection() {
             return false;
         }
         
-        return true;
+        return true; // Connessione riuscita
     } catch (Exception $e) {
         return false;
     }
 }
-
+// Se la connessione ha successo, reindirizza alla home (index.php)
 if (checkDatabaseConnection()) {
     header('Location: index.php');
     exit;

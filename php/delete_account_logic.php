@@ -1,4 +1,5 @@
 <?php
+    // Avvia la sessione
     session_start();
     require_once '../includes/config.php';
 
@@ -12,6 +13,7 @@
     $user_id = $_SESSION['user_id'];
 
     try{
+        // Connessione al database
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($conn->connect_error) {
             throw new Exception("Connessione fallita");

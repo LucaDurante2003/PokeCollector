@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS pokecollector CHARACTER SET utf8mb4 COLLATE utf8mb
 
 USE pokecollector;
 
+/* Creazione tabella utenti*/
 CREATE TABLE IF NOT EXISTS utenti(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -11,6 +12,7 @@ CREATE TABLE IF NOT EXISTS utenti(
     remember_token VARCHAR(255) DEFAULT NULL
 );
 
+/* Creazione tabella collezioni*/
 CREATE TABLE IF NOT EXISTS collezioni(
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_utente INT NOT NULL,
