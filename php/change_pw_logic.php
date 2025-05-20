@@ -54,11 +54,12 @@
 
         // Aggiornamento password (non è necessario l'old_password nel caso di reset)
         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        if ($user_id) {
+        if ($user_id){
             // Se l'utente è loggato, aggiorna la password
             $stmt = $conn->prepare("UPDATE utenti SET password = ? WHERE id = ?");
             $stmt->bind_param("si", $hashed_password, $user_id);
-        } else {
+        } 
+        else{
             // Se l'utente non è loggato (modalità reset password), aggiorna la password usando l'email
             $email = $_POST['email'] ?? '';
             if (empty($email)) {
@@ -84,9 +85,26 @@
         }
 
         // Esegui l'aggiornamento
-        if ($stmt->execute()) {
+        if ($stmt->execute()){
+            session_unset();
+            session_destroy();
+
+            if (isset($_COOKIE['remember_token'])){
+                setcookie('remember_token', '', time()-3600, '/', '', true, true);
+            }
+
+            if($user_id){
+                $null_token = null;
+                $clear_stmt = $conn->prepare("UPDATE utenti SET remember_token = ? WHERE id = ?");
+                $clear_stmt->bind_param("si", $null_token, $user_id);
+                $clear_stmt->execute();
+                $clear_stmt->close();
+            }
+
+            session_start();
             $_SESSION['success_pw_change'] = 'Password aggiornata con successo.';
-        } else {
+        } 
+        else{
             $_SESSION['error_pw_change'] = 'Errore durante l\'aggiornamento della password.';
         }
 

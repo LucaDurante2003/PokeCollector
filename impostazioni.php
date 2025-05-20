@@ -8,7 +8,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     <div class="flex-column main-content">
-        <!-- Se NON siamo in modalità reset password -->
+        <!-- Se NON è in modalità reset password -->
         <?php if (!$resetMode): ?>
             <!-- Logo cliccabile che riporta alla homepage -->
             <a href="homepage.php">
@@ -95,10 +95,10 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="logoutModalLabel">Conferma Logout</h5>
+                            <h5 class="modal-title text-orange" id="logoutModalLabel">Conferma Logout</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                         </div>
-                        <div class="modal-body">Vuoi davvero uscire dal tuo account?</div>
+                        <div class="modal-body text-orange">Vuoi davvero uscire dal tuo account?</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-orange" data-bs-dismiss="modal">Annulla</button>
                             <form action="php/logout_logic.php" method="POST" style="margin: 0;">
@@ -139,26 +139,26 @@
             </div>
         
 
-        <!--Se l'eliminazione dell'account ha avuto successo si apre una finestra modale di conferma e si viene
-        reinderizzati alla pagina iniziale di benvenuto. Ho scritto così l'if perchè non mi permetteva di mischiare php e
-        HTML all'interno dell'if-->
-        <?php if (isset($_SESSION['account_deleted'])): ?>
-            <!-- Modale per confermare eliminazione -->
-            <div class="modal fade" id="accountDeletedModal" tabindex="-1" aria-labelledby="accountDeletedModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-orange" id="accountDeletedModalLabel">Account Eliminato</h5>
-                        </div>
-                        <div class="modal-body text-orange">
-                            Il tuo account è stato eliminato con successo. Verrai reindirizzato alla pagina di benvenuto.
+            <!--Se l'eliminazione dell'account ha avuto successo si apre una finestra modale di conferma e si viene
+            reinderizzati alla pagina iniziale di benvenuto. Ho scritto così l'if perchè non mi permetteva di mischiare php e
+            HTML all'interno dell'if-->
+            <?php if (isset($_SESSION['account_deleted'])): ?>
+                <!-- Modale per confermare eliminazione -->
+                <div class="modal fade" id="accountDeletedModal" tabindex="-1" aria-labelledby="accountDeletedModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-orange" id="accountDeletedModalLabel">Account Eliminato</h5>
+                            </div>
+                            <div class="modal-body text-orange">
+                                Il tuo account è stato eliminato con successo. Verrai reindirizzato alla pagina di benvenuto.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php unset($_SESSION['account_deleted']); ?>
+                <?php unset($_SESSION['account_deleted']); ?>
+            <?php endif; ?>
         <?php endif; ?>
-    <?php endif; ?>
     </div>
 
 <?php

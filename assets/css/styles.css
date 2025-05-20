@@ -20,16 +20,6 @@ html{
     box-sizing: border-box;
 }
 
-/*Per tutti gli schermi che hanno una larghezza massima di 576px (mobile),
-il testo è più piccolo (0.8*dimensione dell'elemento html, che di default nei browser è 16px,
-quindi è 0.8*16px = 12,8px*/
-@media (max-width: 576px){
-    .footer{
-        font-size: 0.8rem;
-        width: 100%;
-    }
-}
-
 /*Imposta le dimensioni e l'adattamento dell'immagine del logo*/
 .logo-img{
     width: 400px; /* Imposta la larghezza dell'immagine a 400px */
@@ -43,7 +33,7 @@ quindi è 0.8*16px = 12,8px*/
     font-size: 3rem; /* Imposta la dimensione del font a 3rem (relativo alla dimensione del font di base) */
     color: rgba(255,155,0,255);
     font-weight: 800; /* Imposta il peso del font a 800 (molto bold) */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
+    font-family: 'Press Start 2P', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
     margin-bottom: 0.5rem; /* Aggiunge uno spazio di 0.5rem sotto il titolo */
 }
@@ -51,9 +41,14 @@ quindi è 0.8*16px = 12,8px*/
 /*Gestisce lo stile di un paragrafo*/
 .lead{
     font-size: 1.2rem; /* Imposta la dimensione del font a 1.2rem */
+    font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgba(255,155,0,255);
     max-width: 600px; /* Limita la larghezza massima del testo a 600px */
     margin-bottom: 1.5rem; /* Aggiunge uno spazio di 1.5rem sotto il paragrafo */
+}
+
+.text-white{
+    font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*Usa Flexbox per centrare il contenuto della pagina*/
@@ -71,6 +66,7 @@ quindi è 0.8*16px = 12,8px*/
     border: 2px solid rgba(255,155,0,255); /* Imposta un bordo di 2px arancione */ 
     padding: 12px 28px; /* Aggiunge un padding (spazio interno) di 12px in verticale e 28px in orizzontale */
     font-size: 1.1rem; /* Imposta la dimensione del font a 1.1rem */
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold; /* Imposta il peso del font a grassetto */
     border-radius: 8px; /* Imposta gli angoli del bottone con un raggio di 8px (arrotondati) */
     text-decoration: none; /* Rimuove la sottolineatura dei link */
@@ -195,23 +191,40 @@ body{
 
 /*Imposta il colore del testo a arancione*/
 .text-orange{
-    color: rgba(255,155,0,255)
+    color: rgba(255,155,0,255);
+    font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*Gestisce lo stile di alcuni testi*/
 .text-orange-title{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specifica i font da usare (con fallback in caso di indisponibilità) */
+    font-family: 'VT323', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
     color: rgba(255,155,0,255);
 }
 
 .text-orange-title-homepage,
 .text-orange-title-dashboard{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 23.5px;
-    font-weight: 649;
+    font-family: 'VT323', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     color: rgba(255,155,0,255);
+}
+
+/*Per tutti gli schermi che hanno una larghezza massima di 576px (mobile),
+il testo è più piccolo (0.8*dimensione dell'elemento html, che di default nei browser è 16px,
+quindi è 0.8*16px = 12,8px*/
+@media (max-width: 576px){
+    .footer{
+        font-size: 0.8rem;
+        width: 100%;
+    }
+    .main-title{
+        font-size: 1.5rem;
+    }
+    .text-orange-title{
+        font-size: 2.5rem;
+    }
 }
 
 /*Gestisce lo stile per i messaggi di errore*/
@@ -364,6 +377,7 @@ body{
     background-color: rgba(255,155,0,255);
     color: black;
     font-weight: 700;
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: none;
     padding: 8px 15px;
     display: block;
@@ -421,7 +435,7 @@ body{
     background: transparent;
     color: black;
     font-size: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     outline: none;
     width: 100%;
     opacity: 0;
@@ -549,6 +563,7 @@ body{
     padding: 8px 12px;
     margin: 6px auto;
     border-radius: 20px;
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     cursor: pointer;
     text-align: center;

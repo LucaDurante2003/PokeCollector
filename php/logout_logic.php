@@ -25,28 +25,28 @@
     // Output HTML per pulizia localStorage via JavaScript
     echo <<<HTML
     <!DOCTYPE html>
-    <html lang="it">
-    <head>
-    <meta charset="UTF-8">
-    <title>Logout...</title>
-    <script>
-    // Elimina tutti i valori salvati nel localStorage relativi a ricerca e filtro
-    function clearPokecollectorLocalStorage() {
-      Object.keys(localStorage).forEach(key => {
-        if (key.startsWith("searchQuery_") || key.startsWith("filterOwned_")) {
-          localStorage.removeItem(key);
-        }
-      });
-    }
-    // Esegui la pulizia e poi reindirizza alla pagina iniziale
-    clearPokecollectorLocalStorage();
-    window.location.href = "../index.php";
-    </script>
-    </head>
-    <body>
-    <p>Logout in corso...</p>
-    </body>
-    </html>
+        <html lang="it">
+            <head>
+                <meta charset="UTF-8">
+                <title>Logout...</title>
+                <script>
+                    // Elimina tutti i valori salvati nel localStorage relativi a ricerca e filtro
+                    function clearPokecollectorLocalStorage() {
+                    Object.keys(localStorage).forEach(key => {
+                        if (key.startsWith("searchQuery_") || key.startsWith("filterOwned_")) {
+                        localStorage.removeItem(key);
+                        }
+                    });
+                    }
+                    // Esegui la pulizia e poi reindirizza alla pagina iniziale
+                    clearPokecollectorLocalStorage();
+                    window.location.href = "../login.php";
+                </script>
+            </head>
+            <body>
+                <p>Logout in corso...</p>
+            </body>
+        </html>
     HTML;
     exit;
 ?>

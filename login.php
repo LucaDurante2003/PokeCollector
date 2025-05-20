@@ -4,27 +4,29 @@
     include_once 'includes/config.php';
 
     // Se non è loggato ma ha il cookie remember_token
-    if (isset($_COOKIE['remember_token'])) {
+    if (isset($_COOKIE['remember_token'])){
         $token = $_COOKIE['remember_token'];
 
         try{
             // Connessione al database
             $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
             if ($conn->connect_error) {
+                // Lancia un'eccezione in caso di errore
                 throw new Exception("Connessione fallita");
             }
+            // Prepara una query per cercare un utente con il token salvato prima
             $stmt = $conn->prepare("SELECT id, nome FROM utenti WHERE remember_token = ?");
             $stmt->bind_param("s", $token);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result->num_rows === 1) {
-                $user = $result->fetch_assoc();
+            if ($result->num_rows === 1){
+                $user = $result->fetch_assoc(); // Estare l'utente come array associativo
                 // Salva le info utente nella sessione
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['nome'];
 
-                // Login automatico riuscito, reindirizzo
+                // Login automatico riuscito, reindirizza alla homepage
                 header('Location: homepage.php');
                 exit;
             }
@@ -46,17 +48,17 @@
         <h2 class="text-orange-title mb-3">Accedi al tuo account</h2>
         <?php
             // Messaggio di successo post-registrazione
-            if (isset($_SESSION['success_register'])) {
+            if (isset($_SESSION['success_register'])){
                 echo '<div class="success-message">' . $_SESSION['success_register'] . '</div>';
                 unset($_SESSION['success_register']);
             }
             // Messaggio di errore se il login fallisce
-            if (isset($_SESSION['error_login'])) {
+            if (isset($_SESSION['error_login'])){
                 echo '<div class="error-message">' . $_SESSION['error_login'] . '</div>';
                 unset($_SESSION['error_login']);
             }
             // Messaggio di successo se la password è stata cambiata
-            if (isset($_SESSION['success_pw_change'])) {
+            if (isset($_SESSION['success_pw_change'])){
                 echo '<div class="success-message">' .  $_SESSION['success_pw_change'] . '</div>';
                 unset( $_SESSION['success_pw_change']);
             }

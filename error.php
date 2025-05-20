@@ -1,37 +1,37 @@
 <?php
-// Avvia la sessione
-session_start();
-include_once 'includes/header.php';
-include_once 'includes/config.php';
+    // Avvia la sessione
+    session_start();
+    include_once 'includes/header.php';
+    include_once 'includes/config.php';
 
-// Funzione che prova a connettersi al database
-function checkDatabaseConnection() {
-    try {
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
-        
-        if ($conn->connect_error) {
+    // Funzione che prova a connettersi al database
+    function checkDatabaseConnection() {
+        try {
+            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
+            
+            if ($conn->connect_error) {
+                return false;
+            }
+            
+            return true; // Connessione riuscita
+        } catch (Exception $e) {
             return false;
         }
-        
-        return true; // Connessione riuscita
-    } catch (Exception $e) {
-        return false;
     }
-}
-// Se la connessione ha successo, reindirizza alla home (index.php)
-if (checkDatabaseConnection()) {
-    header('Location: index.php');
-    exit;
-}
+    // Se la connessione ha successo, reindirizza alla home (index.php)
+    if (checkDatabaseConnection()) {
+        header('Location: index.php');
+        exit;
+    }
 ?>
 <body class="d-flex flex-column min-vh-100">
-<div class="flex-column main-content text-center">
-    <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
-    <h2 class="text-orange-title mb-3">Stiamo cercando di ristabilire la connessione al database. Se il problema persiste, prova a ricaricare la pagina.</h2>
-</div>
+    <div class="flex-column main-content text-center">
+        <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
+        <h2 class="text-orange-title mb-3">Stiamo cercando di ristabilire la connessione al database. Se il problema persiste, prova a ricaricare la pagina.</h2>
+    </div>
 
-<footer class="footer">
-    <p>&copy;PokéCollector - Progetto del corso Tecnologie e Sistemi Web A.A. 2024/2025 - Sapienza Università di Roma.</p>
-</footer>
-<script src = 'assets/js/check_connection.js'></script>
+    <footer class="footer">
+        <p>&copy;PokéCollector - Progetto del corso Tecnologie e Sistemi Web A.A. 2024/2025 - Sapienza Università di Roma.</p>
+    </footer>
+    <script src = 'assets/js/check_connection.js'></script>
 </body>

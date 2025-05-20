@@ -5,9 +5,9 @@
 
     // Carica e decodifica il file JSON con la lista delle espansioni
     $mappingFile = 'json/espansioni.json';
-    $expansioni = json_decode(file_get_contents($mappingFile), true);
+    $expansions = json_decode(file_get_contents($mappingFile), true); // Legge il contenuto del file JSON e lo converte in array associativo PHP
 
-    // Mappa delle immagini per ogni serie
+    // Mappa i loghi per ogni serie
     $serieImages = [
         'base' => 'assets/img/serie_base.png',
         'neo' => 'assets/img/neo_genesis.png',
@@ -43,7 +43,7 @@
         'sv' => 'Serie Scarlatto e Violetto'
     ];
 
-    //Mappa delle eccezioni: alcune espansioni hanno ID speciali da mappare dentro la serie a cui appartengono
+    // Mappa delle eccezioni: alcune espansioni hanno ID speciali da mappare dentro la serie a cui appartengono
     $exceptions = [
         'dv1' => 'bw', //Tesoro dei draghi
         'g1' => 'xy', //Generazioni
@@ -55,24 +55,24 @@
         'sv8pt5' => 'sv' //Evoluzioni Prismatiche
     ];
 
-    //Riorganizza le espansioni per serie in base al prefisso dell'ID
+    // Riorganizza le espansioni per serie in base al prefisso dell'ID
     $serieMap = [];
 
-    foreach ($expansioni as $slug => $data) {
+    foreach ($expansions as $slug => $data) {
         if (!isset($data['id'])) continue;
 
         // Verifica se l'ID dell'espansione è un'eccezione
         $serieKey = null;
         if (isset($exceptions[$data['id']])) {
-            // Usa l'eccezione definita, se presente
+            // Se l'espansione è nelle eccezioni, usa la serie definita lì
             $serieKey = $exceptions[$data['id']];
         } else {
-            // Se non è un'eccezione, prendi il prefisso dall'ID
+            // Se non è un'eccezione, prende il prefisso dall'ID
             preg_match('/^[a-z]+/', $data['id'], $match);
             $serieKey = $match[0] ?? 'unknown';
         }
 
-        // Aggiungi la serie e le espansioni se non esistono ancora
+        // Aggiunge la serie e le espansioni se non esistono ancora
         if (!isset($serieMap[$serieKey])) {
             $serieMap[$serieKey] = [
                 'name' => $serieNames[$serieKey] ?? ucfirst($serieKey),
@@ -81,13 +81,13 @@
             ];
         }
 
-        // Aggiungi l'espansione alla serie corretta
+        // Aggiunge l'espansione alla serie corrispondente
         $serieMap[$serieKey]['expansions'][] = [
             'slug' => $slug,
             'name' => $data['name']
         ];
     }
-    // Converte la mappa in array
+    // Converte la mappa in array indicizzato per Json
     $serieArray = array_values($serieMap);
 ?>
 
@@ -135,43 +135,45 @@
 
     <div id="app" class="container mb-5">
         <div class="row g-4 justify-content-center">
+            <!-- Ciclo Vue che genera una card per ogni serie -->
             <div class="col-12 col-md-6 col-lg-4" v-for="serie in series" :key="serie.name">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                <div class="card-header d-flex align-items-center mb-3">
-                    <img :src="serie.image" :alt="serie.name" style="height: 60px;" class="me-3 rounded">
-                    <h5 class="text-orange-title-homepage m-0">{{ serie.name }}</h5>
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-header d-flex align-items-center mb-3">
+                            <img :src="serie.image" :alt="serie.name" style="height: 60px;" class="me-3 rounded">
+                            <h5 class="text-orange-title-homepage m-0">{{ serie.name }}</h5>
+                        </div>
+                        <div class="expansion-buttons">
+                            <!-- Ciclo Vue che genera un bottone per ogni espansione della serie corrente -->
+                            <a class="btn btn-orange"
+                            v-for="exp in serie.expansions"
+                            :key="exp.slug"
+                            :href="`dashboard.php?slug=${exp.slug}`">
+                            {{ exp.name }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="expansion-buttons">
-                    <a class="btn btn-orange"
-                    v-for="exp in serie.expansions"
-                    :key="exp.slug"
-                    :href="`dashboard.php?slug=${exp.slug}`">
-                    {{ exp.name }}
-                    </a>
-                </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-    const app = Vue.createApp({
-        data() {
-            return {
-                series: window.APP_CONFIG.series
-            };
-        }
-    });
+        const app = Vue.createApp({
+            data() {
+                return {
+                    series: window.APP_CONFIG.series
+                };
+            }
+        });
 
-    app.mount('#app');
+        app.mount('#app');
     </script>
 
     <!-- Freccetta per tornare su-->
     <button id="scrollTopBtn" class="round-btn">
-    <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </button>
 
 <?php
