@@ -107,6 +107,13 @@
     </div>
 </div>
 
+<!-- Bottone della chat con l'assistente -->
+<div class="assistant-wrapper">
+    <a href="chat.php" class="round-btn no-underline" title="Chatta con il Professor Oak">
+        <i class="fas fa-comments"></i>
+    </a>
+</div>
+
 <!--Barra di ricerca-->
 <div class="search-wrapper">
     <div class="search-container">
@@ -158,7 +165,7 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script>
         const app = Vue.createApp({
             data() {

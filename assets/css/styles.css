@@ -357,6 +357,14 @@ quindi è 0.8*16px = 12,8px*/
     z-index: 9999;
 }
 
+/*Mette il bottone della chat in alto a destra, a sinistra del bottone delle impostazioni*/
+.assistant-wrapper {
+    position: fixed;
+    top: 16px;
+    right: 80px;
+    z-index: 9999;
+}
+
 /*Menù a tendina*/
 #settingsMenu{
     display: none;
@@ -698,4 +706,148 @@ quindi è 0.8*16px = 12,8px*/
 
 .no-underline{
     text-decoration: none !important;
+}
+
+/* CSS PER IL CHATBOT */
+
+/* Wrapper generale */
+.chat-fullscreen {
+    height: 100vh;
+    background-image: url('../img/background.jpg'); /* Imposta l'immagine di sfondo della pagina */
+    background-repeat: repeat; /* Ripete l'immagine di sfondo su tutta la pagina */
+    overflow: hidden;
+
+}
+
+.chat-title-wrapper {
+    width: 100%;
+    background-color: #412d5b;
+    border-radius: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.chat-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 155, 0, 1);
+}
+
+/* Mantiene il titolo centrato anche se i lati non sono uguali */
+.chat-title-wrapper h2 {
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none; /* così non blocca click su bottoni */
+}
+
+
+/* Area dei messaggi */
+.chat-log {
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Stile dei messaggi */
+.message {
+    max-width: 75%;
+    padding: 1rem;
+    border-radius: 12px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Utente → allineato a destra */
+.user-msg {
+    background-color: #412d5b;
+    color: rgba(255,155,0,255);
+    text-align: right;
+    border-top-right-radius: 0;
+}
+
+/* Assistant → allineato a sinistra */
+.assistant-msg {
+    background-color: #412d5b;
+    color: rgba(255,155,0,255);
+    text-align: left;
+    border-top-left-radius: 0;
+}
+
+.chat-input-container {
+    background: transparent !important;
+    border-top: none !important;      
+    padding: 0.5rem 1rem;   
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.chat-input-container input {
+    flex: 1;
+    border: 1px solid #412d5b;
+    border-radius: 999px;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s ease;
+    background-color: #412d5b;
+    color: rgba(255,155,0,255) !important;
+}
+
+.chat-input-container input:focus {
+    border-color: rgba(255,155,0,255);
+    box-shadow: 0 0 0 2px rgba(231, 111, 81, 0.2);
+    background-color: #412d5b;
+}
+
+.chat-input-container input::placeholder {
+    color: rgba(255,155,0,255);
+    opacity: 1;
+}
+
+.chat-input-container input:disabled {
+    background-color: #412d5b;
+    color: rgba(255,155,0,255) !important;
+    opacity: 1;
+    border-color: #412d5b;
+}
+
+.chat-input-container button {
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.chat-input-container button:disabled {
+    background-color: #e0a98b;
+    color: #fff;
+    border-color: #e0a98b;
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.chat-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message-bubble {
+    max-width: 75%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.chat-logo {
+    height: 60px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
 }
