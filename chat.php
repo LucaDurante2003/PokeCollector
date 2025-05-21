@@ -75,12 +75,16 @@
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 <script>
+    window.APP_USER_NAME = <?= json_encode($_SESSION['user_name'] ?? 'Allenatore') ?>;
+</script>
+<script>
 const app = Vue.createApp({
     data() {
         return {
             userInput: '',
             messages: JSON.parse(localStorage.getItem('chatMessages')) || [],
-            isLoading: false
+            isLoading: false,
+            userName: window.APP_USER_NAME
         };
     },
     methods: {
@@ -103,7 +107,7 @@ const app = Vue.createApp({
                 const res = await fetch('php/ask_to_LLM.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: input })
+                    body: JSON.stringify({ message: input,user_name: this.userName })
                 });
                 const data = await res.json();
 

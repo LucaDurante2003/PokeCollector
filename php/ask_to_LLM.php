@@ -9,14 +9,16 @@ if (!isset($input["message"])) {
 }
 // Estrae il messaggio dell’utente
 $user_input = $input["message"];
+// Estrae il nome dell’utente
+$user_name = $input["user_name"] ?? "allenatore";
 // Chiave API per OpenRouter (DeepSeek)
-$api_key = "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";
+$api_key = "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";
 
 // Prepara il payload della richiesta per OpenRouter
 $data = [
-    "model" => "deepseek/deepseek-chat-v3-0324:free", // API gratuita di un modello di Deepseek con 685B parametri
+    "model" => "deepseek/deepseek-r1:free", // API gratuita di un modello di Deepseek con 671B parametri
     "messages" => [
-        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Rispondi in italiano in modo semplice e naturale, senza usare Markdown (niente asterischi, grassetti o corsivi). Ti chiami Professor Oak"],
+        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Rispondi in italiano in modo semplice e naturale, senza usare Markdown (niente asterischi, grassetti o corsivi). Ti chiami Professor Oak. L'utente si chiama $user_name."],
         ["role" => "user", "content" => $user_input]
     ]
 ];
@@ -40,7 +42,13 @@ curl_close($ch);
 
 // Se la risposta non è OK (200), invia un messaggio di errore al frontend
 if ($http_code !== 200) {
-    echo json_encode(["reply" => "Errore ($http_code): $response"]);
+    $userMessage = "Si è verificato un errore.";
+    // Gestione specifica errore 429 (rate limit)
+    if ($http_code == 429 && str_contains($response, 'Rate limit exceeded')) {
+        $userMessage = "😓 Hai raggiunto il limite giornaliero gratuito per questo modello. Riprova domani.";
+    }
+
+    echo json_encode(["reply" => $userMessage]);
     exit;
 }
 
