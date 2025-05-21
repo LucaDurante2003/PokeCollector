@@ -122,11 +122,11 @@
 
 <body class="d-flex flex-column min-vh-100">
     <div class="main-content mt-4">
-        <div class="row align-items-center mb-4">
+        <div class="row align-items-center justify-content-center mb-4">
             <div class="col-12 col-md-auto mb-3 mb-md-0">
                 <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img" style="height: 300px;">
             </div>
-            <div class="col text-center text-md-start">
+            <div class="col text-center text-md-center">
                 <?php $username = $_SESSION['user_name']; ?>
                 <h1 class="main-title display-6"><?php echo "Ciao $username! Seleziona un'espansione"; ?></h1>
             </div>
