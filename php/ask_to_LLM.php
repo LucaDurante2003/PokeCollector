@@ -16,9 +16,9 @@ $api_key = "sk-or-v1-ba519b86306290b7ce72a06ffa03c970897c135116e7828448c0df5e955
 
 // Prepara il payload della richiesta per OpenRouter
 $data = [
-    "model" => "deepseek/deepseek-chat-v3-0324:free", // API gratuita di un modello di Deepseek con 685B parametri
+    "model" => "google/gemma-3-27b-it:free", // API gratuita di un modello di Google Gemma con 27B parametri
     "messages" => [
-        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Ti chiami Professor Oak. Rispondi in italiano in modo semplice, naturale e diretto. Non usare markdown, simboli narrativi, asterischi o descrizioni tra *asterischi*. Rispondi come se parlassi a voce, senza effetti teatrali. L'utente si chiama $user_name."],
+        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Ti chiami Professor Oak. Rispondi sempre in italiano in modo semplice, naturale e diretto. Non usare markdown, simboli narrativi, asterischi o descrizioni tra *asterischi*. Rispondi come se parlassi a voce, senza effetti teatrali. L'utente si chiama $user_name."],
         ["role" => "user", "content" => $user_input]
     ]
 ];

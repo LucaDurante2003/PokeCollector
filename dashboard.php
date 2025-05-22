@@ -23,7 +23,22 @@
     $ownedCount = 0; // Conteggio carte possedute per questa espansione
     if ($slug) {
         $setId = urlencode($mappingEspansioni[$slug]['id'] ?? $slug); // ID ufficiale dell'espansione
-        // Costruisco URL per la chiamata API
+        $releaseDate = null; // di default
+        // Costruisco URL per la chiamata API per prendere la data di rilascio dell'espansione
+        $setInfoUrl = "https://api.pokemontcg.io/v2/sets/$setId";
+        $optsSet = [
+            'http' => [
+                'method' => 'GET',
+                'header' => 'X-Api-Key: ' . $apiKey
+            ]
+        ];
+        $setJson = @file_get_contents($setInfoUrl, false, stream_context_create($optsSet));
+        $setData = json_decode($setJson, true)['data'] ?? [];
+
+        if (isset($setData['releaseDate'])) {
+            $releaseDate = $setData['releaseDate'];
+        }
+        // Costruisco URL per la chiamata API per prendere le carte
         $cardsUrl = "https://api.pokemontcg.io/v2/cards"
             . "?q=set.id:$setId"
             . "&orderBy=number"
@@ -85,7 +100,8 @@
         apiKey: <?= json_encode($apiKey) ?>,
         initialCards: <?= json_encode($cards) ?>,   // qui iniettiamo le carte già pronte
         totalCards: <?= count($cards) ?>,
-        ownedCount: <?= $ownedCount ?>
+        ownedCount: <?= $ownedCount ?>,
+        releaseDate: <?= json_encode($releaseDate) ?>
     };
 </script>
 
@@ -141,6 +157,9 @@
         <!-- Titolo espansione -->
         <div class="container text-center mt-4">
             <h1 class="main-title display-6">{{ expansionName }}</h1>
+            <p v-if="releaseDate" class="text-orange mb-2">
+                Data di rilascio: {{ formattedDate }}
+            </p>
         </div>
         <!-- Barra di progresso collezione -->
         <div class="progress-container my-3 text-center">

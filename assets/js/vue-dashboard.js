@@ -7,6 +7,7 @@ createApp({
       slug: window.APP_CONFIG.slug,
       expansions: window.APP_CONFIG.expansions,
       apiKey: window.APP_CONFIG.apiKey,
+      releaseDate: window.APP_CONFIG.releaseDate || null,
       // Dati principali per gestione carte
       cards: [],
       ownedCards: new Set(),
@@ -44,6 +45,15 @@ createApp({
       if (this.totalCards === 0) return 0;
       return Math.round((this.ownedCount / this.totalCards) * 100);
     },
+    formattedDate() {
+        if (!this.releaseDate) return '';
+        const date = new Date(this.releaseDate);
+        return date.toLocaleDateString('it-IT', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
   },
   created() {
     // Carichiamo subito le carte già presenti in window.APP_CONFIG.initialCards
@@ -203,8 +213,8 @@ createApp({
 
     // Conferme modali
     async confirmAdd() {
-      if (this.addQuantity < 0) {
-        this.showMessage('Numero di copie da rimuovere non valido', 'alert-danger');
+      if (this.addQuantity <= 0) {
+        this.showMessage('Numero di copie da aggiungere non valido', 'alert-danger');
         return;
       }
       // Esegui l’update
@@ -219,7 +229,7 @@ createApp({
         this.showMessage('Numero di copie da rimuovere superiore al numero di copie possedute', 'alert-danger');
         return;
       }
-      else if (this.removeQuantity < 0) {
+      else if (this.removeQuantity <= 0) {
         this.showMessage('Numero di copie da rimuovere non valido', 'alert-danger');
         return;
       }
