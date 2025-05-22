@@ -12,13 +12,13 @@ $user_input = $input["message"];
 // Estrae il nome dell’utente
 $user_name = $input["user_name"] ?? "allenatore";
 // Chiave API per OpenRouter (DeepSeek)
-$api_key = "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";
+$api_key = "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";
 
 // Prepara il payload della richiesta per OpenRouter
 $data = [
-    "model" => "deepseek/deepseek-r1:free", // API gratuita di un modello di Deepseek con 671B parametri
+    "model" => "deepseek/deepseek-chat-v3-0324:free", // API gratuita di un modello di Deepseek con 685B parametri
     "messages" => [
-        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Rispondi in italiano in modo semplice e naturale, senza usare Markdown (niente asterischi, grassetti o corsivi). Ti chiami Professor Oak. L'utente si chiama $user_name."],
+        ["role" => "system", "content" => "Sei un assistente esperto di carte Pokémon. Ti chiami Professor Oak. Rispondi in italiano in modo semplice, naturale e diretto. Non usare markdown, simboli narrativi, asterischi o descrizioni tra *asterischi*. Rispondi come se parlassi a voce, senza effetti teatrali. L'utente si chiama $user_name."],
         ["role" => "user", "content" => $user_input]
     ]
 ];
@@ -42,12 +42,19 @@ curl_close($ch);
 
 // Se la risposta non è OK (200), invia un messaggio di errore al frontend
 if ($http_code !== 200) {
-    $userMessage = "Si è verificato un errore.";
-    // Gestione specifica errore 429 (rate limit)
-    if ($http_code == 429 && str_contains($response, 'Rate limit exceeded')) {
-        $userMessage = "😓 Hai raggiunto il limite giornaliero gratuito per questo modello. Riprova domani.";
+    switch ($http_code) {
+        case 401:
+            $userMessage = "La tua chiave API non è valida.";
+            break;
+        case 429:
+            $userMessage = "Hai raggiunto il limite giornaliero. Riprova domani.";
+            break;
+        case 500:
+            $userMessage = "Il modello ha riscontrato un errore interno. Riprova tra poco.";
+            break;
+        default:
+            $userMessage = "Errore imprevisto ($http_code).";
     }
-
     echo json_encode(["reply" => $userMessage]);
     exit;
 }
