@@ -246,7 +246,7 @@
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 title="Vedi su Cardmarket">
-                                <i class="fas fa-euro-sign"></i> 
+                                <i class="fas fa-euro-sign" style="transform:translateX(-1.5px)"></i> 
                             </a>
                         </div>
                     </div>

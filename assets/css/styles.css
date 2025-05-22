@@ -664,6 +664,10 @@ quindi è 0.8*16px = 12,8px*/
   margin: 0.3rem 0;
 }
 
+.card-count {
+  pointer-events: none;
+}
+
 .card-img.grayscale{
     filter: grayscale(100%);
     opacity: 0.6;
@@ -769,9 +773,10 @@ quindi è 0.8*16px = 12,8px*/
 
 /* Utente → allineato a destra */
 .user-msg{
-    background-color: #412d5b;
-    color: rgba(255,155,0,255);
+    background-color: rgba(255,155,0,255);
+    color: black;
     text-align: right;
+    font-weight: 600;
     border-top-right-radius: 0;
 }
 
