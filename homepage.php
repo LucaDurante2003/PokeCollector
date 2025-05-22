@@ -3,6 +3,15 @@
     session_start();
     include_once 'includes/header.php';
 
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
+
     // Carica e decodifica il file JSON con la lista delle espansioni
     $mappingFile = 'json/espansioni.json';
     $expansions = json_decode(file_get_contents($mappingFile), true); // Legge il contenuto del file JSON e lo converte in array associativo PHP
@@ -180,7 +189,7 @@
 
     <!-- Freccetta per tornare su-->
     <button id="scrollTopBtn" class="round-btn">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" style="transform:translateX(0.3px)"></i>
     </button>
 
 <?php

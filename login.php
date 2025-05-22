@@ -45,7 +45,7 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="flex-column main-content">
         <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
-        <h2 class="text-orange-title mb-3">Accedi al tuo account</h2>
+        <h2 class="text-orange-title mb-3 text-center">Accedi al tuo account</h2>
         <?php
             // Messaggio di successo post-registrazione
             if (isset($_SESSION['success_register'])){

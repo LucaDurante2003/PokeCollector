@@ -8,7 +8,7 @@ include_once 'includes/header.php';
     <div class="flex-column main-content">
         <img src="assets/img/logo.png" alt="Logo PokéCollector" class="logo-img mb-4">
 
-        <h2 class="text-orange-title mb-3">Crea un nuovo account</h2>
+        <h2 class="text-orange-title mb-3 text-center">Crea un nuovo account</h2>
 
         <?php
             // Se c'è un messaggio di errore nella registrazione, viene mostrato

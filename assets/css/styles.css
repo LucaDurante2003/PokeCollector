@@ -1,9 +1,11 @@
 html{
-    /*margin: 0;
-    padding: 0;
-    overflow-x: hidden;  /*Evita lo scroll orizzontale
-    box-sizing: border-box;*/
     height: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar{
+    display: none; /* Chrome, Safari */
 }
 
 /*Gestisce il layout e lo stile del footer, utilizzando Flexbox per centrare il contenuto*/
@@ -30,10 +32,10 @@ html{
 
 /*Gestisce lo stile del titolo principale*/
 .main-title{
-    font-size: 3rem; /* Imposta la dimensione del font a 3rem (relativo alla dimensione del font di base) */
+    font-size: 3.25rem;
     color: rgba(255,155,0,255);
     font-weight: 800; /* Imposta il peso del font a 800 (molto bold) */
-    font-family: 'Press Start 2P', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
     margin-bottom: 0.5rem; /* Aggiunge uno spazio di 0.5rem sotto il titolo */
 }
@@ -197,15 +199,15 @@ body{
 
 /*Gestisce lo stile di alcuni testi*/
 .text-orange-title{
-    font-family: 'VT323', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra al testo, con 2px di spostamento e un'ombra sfocata di 5px */
     color: rgba(255,155,0,255);
 }
 
 .text-orange-title-homepage,
 .text-orange-title-dashboard{
-    font-family: 'VT323', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
     font-weight: 400;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     color: rgba(255,155,0,255);
@@ -220,7 +222,7 @@ quindi è 0.8*16px = 12,8px*/
         width: 100%;
     }
     .main-title{
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
     .text-orange-title{
         font-size: 2.5rem;
@@ -343,6 +345,7 @@ quindi è 0.8*16px = 12,8px*/
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
   
 .round-btn:hover{
@@ -708,10 +711,8 @@ quindi è 0.8*16px = 12,8px*/
     text-decoration: none !important;
 }
 
-/* CSS PER IL CHATBOT */
-
 /* Wrapper generale */
-.chat-fullscreen {
+.chat-fullscreen{
     height: 100vh;
     background-image: url('../img/background.jpg'); /* Imposta l'immagine di sfondo della pagina */
     background-repeat: repeat; /* Ripete l'immagine di sfondo su tutta la pagina */
@@ -719,21 +720,21 @@ quindi è 0.8*16px = 12,8px*/
 
 }
 
-.chat-title-wrapper {
+.chat-title-wrapper{
     width: 100%;
     background-color: #412d5b;
     border-radius: 0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.chat-title {
+.chat-title{
     font-size: 1.5rem;
     font-weight: 600;
     color: rgba(255, 155, 0, 1);
 }
 
 /* Mantiene il titolo centrato anche se i lati non sono uguali */
-.chat-title-wrapper h2 {
+.chat-title-wrapper h2{
     text-align: center;
     margin: 0 auto;
     position: absolute;
@@ -744,16 +745,21 @@ quindi è 0.8*16px = 12,8px*/
 
 
 /* Area dei messaggi */
-.chat-log {
+.chat-log{
     padding: 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    scrollbar-width: none;
+}
+
+.chat-log::-webkit-scrollbar{
+    display: none;
 }
 
 /* Stile dei messaggi */
-.message {
+.message{
     max-width: 75%;
     padding: 1rem;
     border-radius: 12px;
@@ -762,7 +768,7 @@ quindi è 0.8*16px = 12,8px*/
 }
 
 /* Utente → allineato a destra */
-.user-msg {
+.user-msg{
     background-color: #412d5b;
     color: rgba(255,155,0,255);
     text-align: right;
@@ -770,14 +776,14 @@ quindi è 0.8*16px = 12,8px*/
 }
 
 /* Assistant → allineato a sinistra */
-.assistant-msg {
+.assistant-msg{
     background-color: #412d5b;
     color: rgba(255,155,0,255);
     text-align: left;
     border-top-left-radius: 0;
 }
 
-.chat-input-container {
+.chat-input-container{
     background: transparent !important;
     border-top: none !important;      
     padding: 0.5rem 1rem;   
@@ -786,7 +792,7 @@ quindi è 0.8*16px = 12,8px*/
     align-items: center;
 }
 
-.chat-input-container input {
+.chat-input-container input{
     flex: 1;
     border: 1px solid #412d5b;
     border-radius: 999px;
@@ -798,32 +804,32 @@ quindi è 0.8*16px = 12,8px*/
     color: rgba(255,155,0,255) !important;
 }
 
-.chat-input-container input:focus {
+.chat-input-container input:focus{
     border-color: rgba(255,155,0,255);
     box-shadow: 0 0 0 2px rgba(231, 111, 81, 0.2);
     background-color: #412d5b;
 }
 
-.chat-input-container input::placeholder {
+.chat-input-container input::placeholder{
     color: rgba(255,155,0,255);
     opacity: 1;
 }
 
-.chat-input-container input:disabled {
+.chat-input-container input:disabled{
     background-color: #412d5b;
     color: rgba(255,155,0,255) !important;
     opacity: 1;
     border-color: #412d5b;
 }
 
-.chat-input-container button {
+.chat-input-container button{
     border-radius: 999px;
     padding: 0.6rem 1.4rem;
     font-weight: bold;
     font-size: 1rem;
 }
 
-.chat-input-container button:disabled {
+.chat-input-container button:disabled{
     background-color: #e0a98b;
     color: #fff;
     border-color: #e0a98b;
@@ -831,14 +837,14 @@ quindi è 0.8*16px = 12,8px*/
     cursor: not-allowed;
 }
 
-.chat-avatar {
+.chat-avatar{
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.message-bubble {
+.message-bubble{
     max-width: 75%;
     padding: 0.8rem 1.2rem;
     border-radius: 12px;
@@ -846,7 +852,7 @@ quindi è 0.8*16px = 12,8px*/
     word-wrap: break-word;
 }
 
-.chat-logo {
+.chat-logo{
     height: 60px;
     border-radius: 8px;
     transition: transform 0.2s ease;

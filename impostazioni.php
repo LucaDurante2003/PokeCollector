@@ -2,8 +2,17 @@
     // Avvia la sessione
     session_start();
     include_once 'includes/header.php';
-    // Controlla se l'utente è in modalità "reset password"
-    $resetMode = isset($_GET['reset_pw']) && $_GET['reset_pw'] == 1;
+
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    $resetMode = isset($_GET['reset_pw']) && $_GET['reset_pw'] == '1';
+
+    if (!$resetMode && !isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 <body class="d-flex flex-column min-vh-100">

@@ -2,6 +2,15 @@
     // Inizia la sessione
     session_start();
     include_once 'includes/header.php';
+
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 <body class="d-flex flex-column min-vh-100">
@@ -9,9 +18,9 @@
 <div id="chatApp" class="chat-fullscreen d-flex flex-column">
 
     <!-- Barra superiore con due pulsanti e titolo -->
-    <div class="chat-title-wrapper d-flex align-items-center justify-content-between px-4 py-2">
+    <div class="chat-title-wrapper d-flex align-items-center justify-content-between px-3 py-2">
         <!-- Pulsante indietro -->
-        <a href="homepage.php" class="btn btn-orange">
+        <a href="homepage.php" class="round-btn">
             <i class="fas fa-arrow-left"></i>
         </a>
 
@@ -21,8 +30,8 @@
         </h2>
 
         <!-- Bottone svuota chat -->
-        <button @click="clearChat" class="btn btn-orange btn-sm">
-            <i class="fas fa-trash-alt me-1"></i> Svuota chat
+        <button @click="clearChat" class="round-btn">
+            <i class="fas fa-trash-alt me-1" style="transform:translateX(2px)"></i>
         </button>
     </div>
 
@@ -69,7 +78,7 @@
             :disabled="isLoading"
             @keyup.enter="sendMessage"
         />
-        <button @click="sendMessage" class="btn btn-orange" :disabled="isLoading">Invia</button>
+        <button @click="sendMessage" class="round-btn" :disabled="isLoading"><i class="fa fa-paper-plane" style="transform:translateX(-1.5px)" aria-hidden="true"></i></button>
     </div>
 </div>
 
@@ -96,12 +105,14 @@ const app = Vue.createApp({
             // Aggiunge messaggio utente
             this.messages.push({ role: 'user', content: input });
             this.saveMessages(); // Salva subito dopo
+            this.scrollToBottom();
 
             this.userInput = '';
 
             // Placeholder di caricamento
             this.messages.push({ role: 'assistant', content: 'Sto scrivendo...' });
             this.saveMessages();
+            this.scrollToBottom();
 
             try {
                 const res = await fetch('php/ask_to_LLM.php', {
@@ -117,15 +128,12 @@ const app = Vue.createApp({
                 // Aggiunge risposta effettiva
                 this.messages.push({ role: 'assistant', content: data.reply });
                 this.saveMessages(); // Salva cronologia aggiornata
-
-                this.$nextTick(() => {
-                    const log = document.querySelector('.chat-log');
-                    log.scrollTop = log.scrollHeight;
-                });
+                this.scrollToBottom();
             } catch (err) {
                 this.messages.pop();
                 this.messages.push({ role: 'assistant', content: '⚠️ Errore nella risposta.' });
                 this.saveMessages();
+                this.scrollToBottom();
             } finally {
                 this.isLoading = false;
             }
@@ -145,14 +153,19 @@ const app = Vue.createApp({
         clearChat() {
             this.messages = [];
             localStorage.removeItem('chatMessages');
+            this.scrollToBottom();
+        },
+
+        scrollToBottom(){
+            this.$nextTick(() => {
+                const log = document.querySelector('.chat-log');
+                if (log) log.scrollTop = log.scrollHeight;
+            });   
         }
     },
     mounted() {
         this.loadMessages();
-        this.$nextTick(() => {
-            const log = document.querySelector('.chat-log');
-            if (log) log.scrollTop = log.scrollHeight;
-        });
+        this.scrollToBottom();
     }
 });
 app.mount('#chatApp');

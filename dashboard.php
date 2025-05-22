@@ -4,6 +4,15 @@
     include_once 'includes/header.php';
     require_once 'includes/config.php';
 
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
+
     // Recupera lo slug e il mapping delle espansioni
     $slug = $_GET['slug'] ?? '';
     $mappingFile = 'json/espansioni.json';
@@ -199,7 +208,7 @@
 
                         <!-- Colonna dei pulsanti -->
                         <div class="d-flex flex-column align-items-center">
-                            <div class="round-btn mb-3 card-count">{{ copies }}</div>
+                            <div class="round-btn mb-3 card-count" style="transform:translateX(2px)">{{ copies }}</div>
                             <button class="round-btn mb-3 card-add-btn" @click="openAddModal">
                                 <i class="fa fa-plus"></i>
                             </button>
@@ -209,7 +218,7 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                             <button class="round-btn mt-3" @click="openFullscreen">
-                                <i class="fas fa-expand"></i>
+                                <i class="fas fa-expand" style="transform:translateX(0.5px)"></i>
                             </button>
                             <!-- pulsante per Cardmarket -->
                             <a v-if="selectedCard.cardmarketUrl"

@@ -40,7 +40,7 @@
                     }
                     // Esegui la pulizia e poi reindirizza alla pagina iniziale
                     clearPokecollectorLocalStorage();
-                    window.location.href = "../login.php";
+                    window.location.replace("../login.php");
                 </script>
             </head>
             <body>
