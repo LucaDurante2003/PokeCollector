@@ -11,8 +11,8 @@ if (!isset($input["message"])) {
 $user_input = $input["message"];
 // Estrae il nome dell’utente
 $user_name = $input["user_name"] ?? "allenatore";
-// Chiave API per OpenRouter (DeepSeek)
-$api_key = "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";
+// Chiave API per OpenRouter (Google Gemma 3 27B). Per funzionare bisogna che la pagina di OpenRouter sia aperta con l'account loggato
+$api_key = "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";
 
 // Prepara il payload della richiesta per OpenRouter
 $data = [
